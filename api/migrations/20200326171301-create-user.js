@@ -22,11 +22,7 @@ module.exports = {
           allowNull: false,
           defaultValue: false
         },
-        projects: {
-          type: Sequelize.ARRAY(Sequelize.TEXT),
-          allowNull: false,
-          defaultValue: []
-        },
+
         createdAt: {
           allowNull: false,
           type: Sequelize.DATE
@@ -36,7 +32,7 @@ module.exports = {
           type: Sequelize.DATE
         },
         deletedAt: {
-          allowNull: false,
+          allowNull: true,
           type: Sequelize.DATE
         }
       },

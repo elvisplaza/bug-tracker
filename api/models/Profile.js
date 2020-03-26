@@ -45,7 +45,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       notification_preference: {
         type: DataTypes.JSON,
-        allowNull: false,
+        allowNull: true,
         defaultValue: {}
       },
       user_id: {

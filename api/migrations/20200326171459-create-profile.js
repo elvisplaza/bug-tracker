@@ -16,8 +16,7 @@ module.exports = {
         },
         organization: {
           type: Sequelize.JSON,
-          allowNull: false,
-          defaultValue: {}
+          allowNull: true
         },
         age: {
           type: Sequelize.DATE,
@@ -46,8 +45,7 @@ module.exports = {
         },
         notification_preference: {
           type: Sequelize.JSON,
-          allowNull: false,
-          defaultValue: {}
+          allowNull: true
         },
         user_id: {
           type: Sequelize.UUID,
@@ -57,6 +55,18 @@ module.exports = {
           },
           onUpdate: "CASCADE",
           onDelete: "SET NULL"
+        },
+        createdAt: {
+          allowNull: false,
+          type: Sequelize.DATE
+        },
+        updatedAt: {
+          allowNull: false,
+          type: Sequelize.DATE
+        },
+        deletedAt: {
+          allowNull: true,
+          type: Sequelize.DATE
         }
       },
       {
