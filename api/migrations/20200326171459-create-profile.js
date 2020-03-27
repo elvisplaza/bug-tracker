@@ -52,9 +52,7 @@ module.exports = {
           references: {
             model: "User",
             key: "id"
-          },
-          onUpdate: "CASCADE",
-          onDelete: "SET NULL"
+          }
         },
         createdAt: {
           allowNull: false,

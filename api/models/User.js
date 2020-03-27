@@ -25,6 +25,7 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   User.associate = function(models) {
+    User.belongsTo(models.Organization);
     User.hasOne(models.Profile);
   };
   return User;

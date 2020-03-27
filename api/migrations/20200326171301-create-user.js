@@ -22,6 +22,15 @@ module.exports = {
           allowNull: false,
           defaultValue: false
         },
+        organization_id: {
+          type: Sequelize.UUID,
+          references: {
+            model: "User",
+            key: "id"
+          },
+          onUpdate: "CASCADE",
+          onDelete: "SET NULL"
+        },
 
         createdAt: {
           allowNull: false,
