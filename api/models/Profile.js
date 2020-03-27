@@ -42,24 +42,27 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
         defaultValue: ""
-      },
-      notification_preference: {
-        type: DataTypes.JSON,
-        allowNull: true,
-        defaultValue: {}
-      },
-      user_id: {
-        type: DataTypes.UUID,
-        references: {
-          model: "User",
-          key: "id"
-        }
       }
+      // user_id: {
+      //   type: DataTypes.UUID,
+      //   references: {
+      //     model: "User",
+      //     key: "id"
+      //   }
+      // }
+      // notification_id: {
+      //   type: DataTypes.UUID,
+      //   references: {
+      //     model: "NotificationPreference",
+      //     key: "id"
+      //   }
+      // }
     },
     {}
   );
   Profile.associate = function(models) {
     Profile.belongsTo(models.User);
+    Profile.belongsTo(models.NotificationPreference);
   };
   return Profile;
 };

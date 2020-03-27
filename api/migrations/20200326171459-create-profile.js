@@ -43,14 +43,17 @@ module.exports = {
           allowNull: false,
           defaultValue: ""
         },
-        notification_preference: {
-          type: Sequelize.JSON,
-          allowNull: true
-        },
         user_id: {
           type: Sequelize.UUID,
           references: {
             model: "User",
+            key: "id"
+          }
+        },
+        notification_preference_id: {
+          type: Sequelize.UUID,
+          references: {
+            model: "NotificationPreference",
             key: "id"
           }
         },
