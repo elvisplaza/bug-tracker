@@ -3,8 +3,10 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const http = require("http");
 const Sequelize = require("sequelize");
-const cors = require("cors");
-
+// utils
+const { applyMiddleware } = require("./utils");
+// middleware
+const middleware = require("./middleware");
 // routes
 const { router: userRoutes } = require("./routes/user/userRoute");
 // constants
@@ -14,12 +16,10 @@ const { URL, PORT } = require("./constants");
 const app = express();
 
 // instantiating sequelize
-const sequelize = new Sequelize("postgres://Plaza:pass@localhost:5432/bug-tracker-app");
+const sequelize = new Sequelize(URL);
 
-// parse the JSON data
-// app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+// common middleware for ever route
+applyMiddleware(middleware, app);
 
 // routes
 

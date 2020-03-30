@@ -9,11 +9,11 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true
       },
       marketing: {
-        type: Sequelize.BOOLEAN,
+        type: DataTypes.BOOLEAN,
         defaultValue: true
       },
       project: {
-        type: Sequelize.BOOLEAN,
+        type: DataTypes.BOOLEAN,
         defaultValue: true
       }
     },

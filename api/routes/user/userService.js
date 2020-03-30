@@ -1,9 +1,9 @@
 const models = require("./../../models");
 
 const createUser = async (req, res) => {
-  const { name, email, password, organization } = req.body;
+  const { phoneNumber, email, isAdmin, organizationName, password } = req.body;
 };
 
-exports.module = {
+module.exports = {
   createUser
 };

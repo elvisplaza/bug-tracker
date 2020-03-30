@@ -9,9 +9,22 @@ module.exports = {
           defaultValue: Sequelize.UUIDV1,
           primaryKey: true
         },
+        password: {
+          type: Sequelize.BOOLEAN,
+          allowNull: false
+        },
+
         is_email_valid: {
           type: Sequelize.BOOLEAN,
           allowNull: false
+        },
+        email: {
+          type: Sequelize.STRING(50),
+          allowNull: false
+        },
+        phone_number: {
+          type: Sequelize.INTEGER,
+          allowNull: true
         },
         is_phone_valid: {
           type: Sequelize.BOOLEAN,

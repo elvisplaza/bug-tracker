@@ -12,6 +12,14 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.BOOLEAN,
         allowNull: false
       },
+      email: {
+        type: DataTypes.UUID,
+        allowNull: false
+      },
+      phone_number: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+      },
       is_phone_valid: {
         type: DataTypes.BOOLEAN,
         allowNull: false
