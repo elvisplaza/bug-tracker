@@ -50,13 +50,6 @@ module.exports = {
             key: "id"
           }
         },
-        notification_preference_id: {
-          type: Sequelize.UUID,
-          references: {
-            model: "NotificationPreference",
-            key: "id"
-          }
-        },
         createdAt: {
           allowNull: false,
           type: Sequelize.DATE

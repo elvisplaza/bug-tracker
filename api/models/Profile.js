@@ -60,9 +60,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     {}
   );
-  Profile.associate = function(models) {
-    Profile.belongsTo(models.User);
-    Profile.belongsTo(models.NotificationPreference);
-  };
+  Profile.associate = function(models) {};
   return Profile;
 };

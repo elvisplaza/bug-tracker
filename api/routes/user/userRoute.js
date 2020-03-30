@@ -20,7 +20,7 @@ router
       next(e);
     }
   })
-  // .post(createUser)
+  .post(createUser)
   .delete(async (req, res, next) => {
     try {
       console.log("im deleting a user");

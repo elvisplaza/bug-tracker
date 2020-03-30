@@ -15,7 +15,13 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         defaultValue: true
       },
-
+      profile: {
+        type: Sequelize.UUID,
+        references: {
+          model: "Profile",
+          key: "id"
+        }
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
