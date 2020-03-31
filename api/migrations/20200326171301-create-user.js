@@ -10,7 +10,7 @@ module.exports = {
           primaryKey: true
         },
         password: {
-          type: Sequelize.BOOLEAN,
+          type: Sequelize.STRING,
           allowNull: false
         },
 
@@ -19,11 +19,11 @@ module.exports = {
           allowNull: false
         },
         email: {
-          type: Sequelize.STRING(50),
+          type: Sequelize.STRING,
           allowNull: false
         },
         phone_number: {
-          type: Sequelize.INTEGER,
+          type: Sequelize.STRING,
           allowNull: true
         },
         is_phone_valid: {
@@ -35,16 +35,6 @@ module.exports = {
           allowNull: false,
           defaultValue: false
         },
-        organization_id: {
-          type: Sequelize.UUID,
-          references: {
-            model: "User",
-            key: "id"
-          },
-          onUpdate: "CASCADE",
-          onDelete: "SET NULL"
-        },
-
         createdAt: {
           allowNull: false,
           type: Sequelize.DATE
@@ -59,7 +49,8 @@ module.exports = {
         }
       },
       {
-        underscored: true
+        underscored: true,
+        freezeTableName: true
       }
     );
   },

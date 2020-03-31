@@ -14,10 +14,6 @@ module.exports = {
           allowNull: false,
           defaultValue: ""
         },
-        organization: {
-          type: Sequelize.JSON,
-          allowNull: true
-        },
         age: {
           type: Sequelize.DATE,
           allowNull: false,
@@ -30,8 +26,7 @@ module.exports = {
         },
         first_name: {
           type: Sequelize.STRING,
-          allowNull: false,
-          defaultValue: ""
+          allowNull: false
         },
         last_name: {
           type: Sequelize.STRING,
@@ -42,13 +37,6 @@ module.exports = {
           type: Sequelize.STRING,
           allowNull: false,
           defaultValue: ""
-        },
-        user_id: {
-          type: Sequelize.UUID,
-          references: {
-            model: "User",
-            key: "id"
-          }
         },
         createdAt: {
           allowNull: false,
@@ -64,7 +52,8 @@ module.exports = {
         }
       },
       {
-        underscored: true
+        underscored: true,
+        freezeTableName: true
       }
     );
   },

@@ -8,6 +8,11 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: DataTypes.UUIDV1,
         primaryKey: true
       },
+      password: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+
       is_email_valid: {
         type: DataTypes.BOOLEAN,
         allowNull: false
@@ -17,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false
       },
       phone_number: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: true
       },
       is_phone_valid: {
@@ -28,6 +33,18 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: false
+      },
+      createdAt: {
+        allowNull: false,
+        type: DataTypes.DATE
+      },
+      updatedAt: {
+        allowNull: false,
+        type: DataTypes.DATE
+      },
+      deletedAt: {
+        allowNull: true,
+        type: DataTypes.DATE
       }
     },
     {}

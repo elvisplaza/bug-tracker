@@ -12,22 +12,23 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(200),
         allowNull: false,
         defaultValue: "Organization Name"
+      },
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+      deletedAt: {
+        allowNull: true
       }
-      // admin: {
-      //   type: DataTypes.JSON,
-      //   allowNull: false,
-      //   defaultValue: {}
-      // },
-      // apps: {
-      //   type: DataTypes.ARRAY(DataTypes.TEXT),
-      //   allowNull: false,
-      //   defaultValue: []
-      // }
     },
     {}
   );
   Organization.associate = function(models) {
-    Organization.hasMany(models.User, { as: "employees" });
+    Organization.hasMany(models.User);
   };
   return Organization;
 };

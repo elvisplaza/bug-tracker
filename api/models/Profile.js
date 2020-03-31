@@ -13,11 +13,6 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         defaultValue: ""
       },
-      organization: {
-        type: DataTypes.JSON,
-        allowNull: false,
-        defaultValue: {}
-      },
       age: {
         type: DataTypes.DATE,
         allowNull: false,
@@ -30,8 +25,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       first_name: {
         type: DataTypes.STRING,
-        allowNull: false,
-        defaultValue: ""
+        allowNull: false
       },
       last_name: {
         type: DataTypes.STRING,
@@ -42,24 +36,24 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
         defaultValue: ""
+      },
+      createdAt: {
+        allowNull: false,
+        type: DataTypes.DATE
+      },
+      updatedAt: {
+        allowNull: false,
+        type: DataTypes.DATE
+      },
+      deletedAt: {
+        allowNull: true,
+        type: DataTypes.DATE
       }
-      // user_id: {
-      //   type: DataTypes.UUID,
-      //   references: {
-      //     model: "User",
-      //     key: "id"
-      //   }
-      // }
-      // notification_id: {
-      //   type: DataTypes.UUID,
-      //   references: {
-      //     model: "NotificationPreference",
-      //     key: "id"
-      //   }
-      // }
     },
     {}
   );
-  Profile.associate = function(models) {};
+  Profile.associate = function(models) {
+    Profile.belongsTo(models.NotificationPreference);
+  };
   return Profile;
 };

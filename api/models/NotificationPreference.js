@@ -15,6 +15,18 @@ module.exports = (sequelize, DataTypes) => {
       project: {
         type: DataTypes.BOOLEAN,
         defaultValue: true
+      },
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+      deletedAt: {
+        allowNull: true,
+        type: Sequelize.DATE
       }
     },
     {}
