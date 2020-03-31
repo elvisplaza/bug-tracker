@@ -34,6 +34,15 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         defaultValue: false
       },
+      organization: {
+        type: DataTypes.UUID,
+        references: {
+          model: "Organization",
+          key: "id"
+        },
+        onUpdate: "CASCADE",
+        onDelete: "SET NULL"
+      },
       createdAt: {
         allowNull: false,
         type: DataTypes.DATE

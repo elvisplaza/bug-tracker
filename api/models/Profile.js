@@ -37,6 +37,24 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         defaultValue: ""
       },
+      notification_preference: {
+        type: DataTypes.UUID,
+        references: {
+          model: "NotificationPreference",
+          key: "id"
+        },
+        onUpdate: "CASCADE",
+        onDelete: "SET NULL"
+      },
+      user: {
+        type: DataTypes.UUID,
+        references: {
+          model: "User",
+          key: "id"
+        },
+        onUpdate: "CASCADE",
+        onDelete: "SET NULL"
+      },
       createdAt: {
         allowNull: false,
         type: DataTypes.DATE
@@ -54,6 +72,7 @@ module.exports = (sequelize, DataTypes) => {
   );
   Profile.associate = function(models) {
     Profile.belongsTo(models.NotificationPreference);
+    Profile.belongsTo(models.User);
   };
   return Profile;
 };

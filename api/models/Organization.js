@@ -15,17 +15,20 @@ module.exports = (sequelize, DataTypes) => {
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: DataTypes.DATE
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: DataTypes.DATE
       },
       deletedAt: {
+        type: DataTypes.DATE,
         allowNull: true
       }
     },
-    {}
+    {
+      freezeTableName: true
+    }
   );
   Organization.associate = function(models) {
     Organization.hasMany(models.User);

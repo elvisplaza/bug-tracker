@@ -52,8 +52,8 @@ module.exports = {
         }
       },
       {
-        underscored: true,
-        freezeTableName: true
+        underscored: true
+        // freezeTableName: true
       }
     );
   },

@@ -53,7 +53,7 @@ class CreateNewAccount extends Component {
       <section className={s.create_new_account}>
         <div>
           <h2>New Account</h2>
-          <form className={s.create_new_account_form}>
+          <form onSubmit={this.onHandleSubmit} className={s.create_new_account_form}>
             <label htmlFor='_email'>
               <input
                 type='email'
@@ -127,6 +127,7 @@ class CreateNewAccount extends Component {
                 id='_isAdmin'
               />
             </label>
+            <button type='submit'>Create Account</button>
           </form>
         </div>
       </section>

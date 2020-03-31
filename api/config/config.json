@@ -1,6 +1,6 @@
 {
   "development": {
-    "username": "elvis",
+    "username": "Plaza",
     "password": null,
     "database": "bug-tracker-app",
     "url": "postgres://Plaza:pass@localhost:5432/bug-tracker-app",
@@ -8,14 +8,14 @@
   },
 
   "test": {
-    "username": "elvis",
+    "username": "Plaza",
     "password": null,
     "url": "postgres://Plaza:pass@localhost:5432/bug-tracker-app",
     "dialect": "postgres",
     "operatorsAliases": false
   },
   "production": {
-    "username": "elvis",
+    "username": "Plaza",
     "password": null,
     "database": "bug-tracker-app",
     "host": "127.0.0.1",
