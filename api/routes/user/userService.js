@@ -3,6 +3,7 @@ const User = require("./../../models/").User;
 
 const createUser = async (req, res) => {
   const { _phoneNumber, _email, _isAdmin, _organizationName, _password } = req.body;
+  console.log("reqbody creating user %%%", req.body);
   try {
     const newUser = await Organization.create({
       name: _organizationName
@@ -15,8 +16,8 @@ const createUser = async (req, res) => {
         is_phone_valid: false,
         is_email_valid: false
       });
-      return res.status(201).json({ data: newUser });
     });
+    return res.status(201).json({ data: newUser });
   } catch (err) {
     throw err;
   }
@@ -25,13 +26,18 @@ const createUser = async (req, res) => {
 const getUser = async (req, res) => {
   const { email, password } = req.query;
   console.log(req.query, "query for user");
-  // try {
-  //   const user = await User.findByPk(userId);
+  try {
+    const user = await User.findOne({
+      where: {
+        email
+      },
+      include: Organization
+    });
 
-  //   return res.status(200).send({ data: user });
-  // } catch (err) {
-  //   throw err;
-  // }
+    return res.status(200).send({ data: user });
+  } catch (err) {
+    throw err;
+  }
 };
 
 module.exports = {
