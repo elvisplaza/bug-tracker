@@ -68,7 +68,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.DATE
       }
     },
-    {}
+    { freezeTableName: true }
   );
   Profile.associate = function(models) {
     Profile.belongsTo(models.NotificationPreference);

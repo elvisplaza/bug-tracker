@@ -31,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
   Organization.associate = function(models) {
-    Organization.hasMany(models.User);
+    Organization.hasMany(models.User, { foreignKey: "organization" });
   };
   return Organization;
 };

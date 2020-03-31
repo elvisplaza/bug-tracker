@@ -56,11 +56,13 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.DATE
       }
     },
-    {}
+    {
+      freezeTableName: true
+    }
   );
   User.associate = function(models) {
     User.belongsTo(models.Organization);
-    User.hasOne(models.Profile);
+    User.hasOne(models.Profile, { foreignKey: "user" });
   };
   return User;
 };

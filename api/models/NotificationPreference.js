@@ -29,10 +29,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.DATE
       }
     },
-    {}
+    { freezeTableName: true }
   );
   NotificationPreference.associate = function(models) {
-    NotificationPreference.hasOne(models.Profile);
+    NotificationPreference.hasOne(models.Profile, { foreignKey: "notification_preference" });
   };
   return NotificationPreference;
 };

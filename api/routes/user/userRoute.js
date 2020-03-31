@@ -1,32 +1,15 @@
 const express = require("express");
-const { createUser } = require("./userService");
+const { createUser, getUser } = require("./userService");
 
 const router = express.Router();
 
-// GET /user
 router
+  // GET /user
   .route("/")
-  .get(async (req, res, next) => {
-    try {
-      console.log("im getting you info");
-    } catch (e) {
-      next(e);
-    }
-  })
-  .put(async (req, res, next) => {
-    try {
-      console.log("im updating user");
-    } catch (e) {
-      next(e);
-    }
-  })
-  .post(createUser)
-  .delete(async (req, res, next) => {
-    try {
-      console.log("im deleting a user");
-    } catch (err) {
-      next(err);
-    }
-  });
+  .get(getUser)
+  .post(createUser);
+
+// /user/:userId
+// router.route("/:userId").get(getUser);
 
 exports.router = router;
