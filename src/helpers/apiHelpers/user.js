@@ -22,8 +22,7 @@ export const onGetUser = ({ email = "", password = "" }) => {
   return axios
     .get(path)
     .then(data => {
-      console.log(data, "getting user");
-      return data;
+      return data.data;
     })
     .catch(err => {
       throw err;

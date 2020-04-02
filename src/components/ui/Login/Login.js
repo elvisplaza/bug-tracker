@@ -6,7 +6,7 @@ import * as userAPI from "./../../../helpers/apiHelpers/user";
 
 // helpers
 import { stringify } from "./../../../helpers/stringify";
-
+import { setToken } from "../../../helpers/tokenService";
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -30,8 +30,8 @@ class Login extends Component {
     const { _email, _password } = this.state;
     console.log(stringify({ email: "haha", password: "haha" }));
     try {
-      const user = await userAPI.onGetUser({ email: _email, password: _password });
-      console.log(user, "i got the user!");
+      const { data: token } = await userAPI.onGetUser({ email: _email, password: _password });
+      setToken(token);
     } catch (err) {
       console.log(err);
     }

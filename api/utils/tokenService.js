@@ -1,8 +1,8 @@
 const jwt = require("jsonwebtoken");
-const { SECRET } = require("./constants");
+const { SECRET } = require("./../constants");
 
 exports.issueToken = async userData => {
-  const { _id: id } = userData;
+  const { id } = userData;
   const payload = {
     user: {
       id
