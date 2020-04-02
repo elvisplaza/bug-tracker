@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import history from "./../../../helpers/history";
 import s from "./Login.module.css";
 
 // API
@@ -30,8 +31,13 @@ class Login extends Component {
     const { _email, _password } = this.state;
     console.log(stringify({ email: "haha", password: "haha" }));
     try {
-      const { data: token } = await userAPI.onGetUser({ email: _email, password: _password });
+      const {
+        data: [token, user]
+      } = await userAPI.onGetUser({ email: _email, password: _password });
       setToken(token);
+      console.log("user info", user);
+      history.push(`/home/${user.id}`);
+      document.location.reload();
     } catch (err) {
       console.log(err);
     }

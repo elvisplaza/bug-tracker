@@ -28,3 +28,10 @@ export const onGetUser = ({ email = "", password = "" }) => {
       throw err;
     });
 };
+
+export const onGetUserById = ({ id }) => {
+  const path = `${url}/${id}`;
+  return axios.get(path).then(data => {
+    return data.data;
+  });
+};

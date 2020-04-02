@@ -41,13 +41,21 @@ const getUser = async (req, res) => {
     });
     const token = await tokenService.issueToken(user);
 
-    return res.status(200).send({ data: token });
+    return res.status(200).send({ data: [token, user] });
   } catch (err) {
     throw err;
   }
 };
 
+const getOneUser = async (req, res) => {
+  const { userId } = req.params;
+  const user = User.findByPk(userId);
+  console.log(userId, "user id");
+  return res.status(200).send({ data: user });
+};
+
 module.exports = {
   createUser,
-  getUser
+  getUser,
+  getOneUser
 };
