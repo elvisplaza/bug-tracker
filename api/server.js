@@ -1,6 +1,5 @@
 "use strict";
 const express = require("express");
-const bodyParser = require("body-parser");
 const http = require("http");
 const Sequelize = require("sequelize");
 // utils
@@ -9,6 +8,7 @@ const { applyMiddleware } = require("./utils");
 const middleware = require("./middleware");
 // routes
 const { router: userRoutes } = require("./routes/user/userRoute");
+const { router: appRoutes } = require("./routes/app/appRoute");
 // constants
 const { URL, PORT } = require("./constants");
 
@@ -24,6 +24,7 @@ applyMiddleware(middleware, app);
 // routes
 
 app.use("/user", userRoutes);
+app.use("/app", appRoutes);
 
 // create a server
 const server = http.createServer(app);

@@ -49,8 +49,8 @@ const getUser = async (req, res) => {
 
 const getOneUser = async (req, res) => {
   const { userId } = req.params;
-  const user = User.findByPk(userId);
-  console.log(userId, "user id");
+  const user = await User.findByPk(userId);
+  console.log("user id", user);
   return res.status(200).send({ data: user });
 };
 

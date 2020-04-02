@@ -38,6 +38,15 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: true
       },
+      organization: {
+        type: DataTypes.UUID,
+        references: {
+          model: "Organization",
+          key: "id"
+        },
+        onUpdate: "CASCADE",
+        onDelete: "SET NULL"
+      },
       createdAt: {
         allowNull: false,
         type: DataTypes.DATE
@@ -56,7 +65,7 @@ module.exports = (sequelize, DataTypes) => {
   );
   App.associate = function(models) {
     // associations can be defined here
-    App.belongsTo(models.Organization, { as: "organization" });
+    App.belongsTo(models.Organization, { foreignKey: "organization" });
   };
   return App;
 };
