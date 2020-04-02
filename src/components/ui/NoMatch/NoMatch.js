@@ -1,6 +1,13 @@
 import React from "react";
+
+import history from "./../../../helpers/history";
+
 const NoMatch = props => {
-  return <section>no page found error:404</section>;
+  return (
+    <section>
+      <a href='/'>go to login</a>no page found error:404
+    </section>
+  );
 };
 
 export default NoMatch;
