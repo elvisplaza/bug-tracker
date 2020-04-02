@@ -11,7 +11,6 @@ const createApp = async (req, res) => {
     _websiteUrl,
     _organizationId
   } = req.body;
-  console.log("im connected to req.params", req.body);
 
   try {
     await App.create({
