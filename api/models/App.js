@@ -66,6 +66,7 @@ module.exports = (sequelize, DataTypes) => {
   App.associate = function(models) {
     // associations can be defined here
     App.belongsTo(models.Organization, { foreignKey: "organization" });
+    App.hasMany(models.Bug, { foreignKey: "bugs" });
   };
   return App;
 };
