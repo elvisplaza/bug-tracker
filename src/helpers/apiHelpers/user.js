@@ -30,8 +30,9 @@ export const onGetUser = ({ email = "", password = "" }) => {
 };
 
 export const onGetUserById = ({ id }) => {
-  const path = `${url}/${id}`;
+  const path = `${url}/user/${id}`;
   return axios.get(path).then(data => {
+    console.log("dataaa from getting user by id", data.data);
     return data.data;
   });
 };

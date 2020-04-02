@@ -4,6 +4,7 @@ import s from "./Profile.module.css";
 
 // apiHelpers
 import * as userAPI from "./../../../helpers/apiHelpers/user";
+import * as appAPI from "./../../../helpers/apiHelpers/app";
 
 class Profile extends Component {
   constructor(props) {
@@ -26,20 +27,34 @@ class Profile extends Component {
     this.onGetUser(userId);
   }
   onGetUser = async id => {
-    const { data: userInfo } = userAPI.onGetUserById({ id });
+    const { data: userInfo } = await userAPI.onGetUserById({ id });
+    console.log(userInfo, "user info");
     return this.setState({ _user: userInfo });
   };
   onHandleChange = e => {
     const { value, id } = e.target;
+    return this.setState({
+      [id]: value
+    });
   };
 
   onHandleValidation = e => {
     return;
   };
-  onCreateNewProject = e => {
-    console.log(e);
+  onCreateNewProject = async e => {
+    const body = {
+      _name: "tester",
+      _clientLanguage: "js",
+      _serverLanguage: "node",
+      _databaseType: "sql",
+      _lastUpdated: new Date(),
+      _description: "something to add",
+      _websiteUrl: "https://google.com",
+      _organizationId: this.state._user.organization
+    };
+    const { data: newProject } = await appAPI.onCreateApp({ body });
+    console.log("i created a projecT!!!", newProject);
   };
-
   render() {
     const {
       _email,
