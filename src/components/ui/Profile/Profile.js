@@ -36,6 +36,9 @@ class Profile extends Component {
   onHandleValidation = e => {
     return;
   };
+  onCreateNewProject = e => {
+    console.log(e);
+  };
 
   render() {
     const {
@@ -65,6 +68,7 @@ class Profile extends Component {
             <input type='email' id='' onBlur={onHandleValidation} onChange={this.onHandleChange} value={} />
           </label> */}
         </form>
+        <p onClick={this.onCreateNewProject}>create new project</p>
       </section>
     );
   }
