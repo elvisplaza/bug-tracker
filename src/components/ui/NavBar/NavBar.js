@@ -28,7 +28,7 @@ const NavBar = (props) => {
         {_isShowModal && (
           <div className={s.nav_bar_profile_container}>
             <h2>Organization</h2>
-            <a href={"/profile/0c2b7a10-73a7-11ea-9d3d-5964f30f2a67"}>Edit Profile</a>
+            <a href={"/profile/af2be130-7840-11ea-8045-010dc24b6a44"}>Edit Profile</a>
             <p></p>
           </div>
         )}

@@ -13,7 +13,7 @@ class Profile extends Component {
     this.state = {
       _email: "",
       _age: "",
-      _isAdmin: false,
+      _isAdmin: "",
       _firstName: "",
       _lastName: "",
       _displayName: "",
@@ -29,7 +29,16 @@ class Profile extends Component {
   onGetUser = async (id) => {
     const { data: userInfo } = await userAPI.onGetUserById({ id });
     console.log(userInfo, "user info");
-    return this.setState({ _user: userInfo });
+    return this.setState({
+      _email: userInfo.email,
+      _age: userInfo.Profile.age,
+      _isAdmin: userInfo.is_admin,
+      _organization: userInfo.Organization.name,
+      _firstName: userInfo.Profile.first_name,
+      _lastName: userInfo.Profile.last_name,
+      _displayName: userInfo.Profile._displayName,
+      _phoneNumber: userInfo.phone_number,
+    });
   };
   onHandleChange = (e) => {
     const { value, id } = e.target;
@@ -63,6 +72,7 @@ class Profile extends Component {
       _firstName,
       _lastName,
       _displayName,
+      _organization,
       _phoneNumber,
       _notificationPreference,
     } = this.state;
@@ -70,7 +80,18 @@ class Profile extends Component {
       <section className={s.profile}>
         <h2 className={s.profile_title}> Profile</h2>
         <form className={s.profile_form}>
+          <label htmlFor='_organization' className={s.profile_form_label}>
+            <p className={s.profile_form_p}>Organization</p>
+            <input
+              type='text'
+              id='_organization'
+              onBlur={this.onHandleValidation}
+              onChange={this.onHandleChange}
+              value={_organization}
+            />
+          </label>
           <label htmlFor='_email'>
+            <p className={s.profile_form_p}>Email</p>
             <input
               type='email'
               id='_email'
@@ -79,11 +100,51 @@ class Profile extends Component {
               value={_email}
             />
           </label>
-          {/*<label htmlFor>
-            <input type='email' id='' onBlur={onHandleValidation} onChange={this.onHandleChange} value={} />
-          </label> */}
+          <label htmlFor='_firstName'>
+            <p className={s.profile_form_p}>Name</p>
+            <input
+              type='text'
+              id='_firstName'
+              onBlur={this.onHandleValidation}
+              onChange={this.onHandleChange}
+              value={_firstName}
+            />
+          </label>
+          <label htmlFor='_lastName'>
+            <p className={s.profile_form_p}>Surname</p>
+            <input
+              type='text'
+              id='_lastName'
+              onBlur={this.onHandleValidation}
+              onChange={this.onHandleChange}
+              value={_lastName}
+            />
+          </label>
+          <label htmlFor='_displayName'>
+            <p className={s.profile_form_p}>Display Name</p>
+            <input
+              type='text'
+              id='_displayName'
+              onBlur={this.onHandleValidation}
+              onChange={this.onHandleChange}
+              value={_displayName}
+            />
+          </label>
+          <label htmlFor='_isAdmin'>
+            <p className={s.profile_form_p}>Organization Admin</p>
+            <input type='checkbox' id='_isAdmin' value={_isAdmin} />
+          </label>
+          <label htmlFor='_phoneNumber'>
+            <p className={s.profile_form_p}>Number</p>
+            <input
+              type='phone'
+              id='_phoneNumber'
+              onBlur={this.onHandleValidation}
+              onChange={this.onHandleChange}
+              value={_phoneNumber}
+            />
+          </label>
         </form>
-        <p onClick={this.onCreateNewProject}>create new project</p>
       </section>
     );
   }
