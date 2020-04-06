@@ -72,7 +72,7 @@ module.exports = (sequelize, DataTypes) => {
   );
   Profile.associate = function (models) {
     Profile.belongsTo(models.NotificationPreference, { foreignKey: "notification_preference" });
-    Profile.belongsTo(models.User);
+    Profile.belongsTo(models.User, { foreignKey: "user" });
   };
   return Profile;
 };

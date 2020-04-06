@@ -1,6 +1,6 @@
 const Organization = require("./../../models").Organization;
 const User = require("./../../models/").User;
-
+const Profile = require("./../../models/").Profile;
 // utils
 const tokenService = require("./../../utils/tokenService");
 
@@ -8,7 +8,7 @@ const createUser = async (req, res) => {
   const { _phoneNumber, _email, _isAdmin, _organizationName, _password } = req.body;
 
   try {
-    const newUser = await Organization.create({
+    await Organization.create({
       name: _organizationName,
     }).then((org) => {
       org
@@ -62,10 +62,26 @@ const getUser = async (req, res) => {
   }
 };
 
+// ================== /user/:userId ==================
+
 const getOneUser = async (req, res) => {
   const { userId } = req.params;
-  const user = await User.findByPk(userId);
-  console.log("user id", user);
+  const user = await User.findOne({
+    where: {
+      id: userId,
+    },
+    include: [
+      {
+        model: Organization,
+        as: "Organization",
+      },
+      {
+        model: Profile,
+        as: "Profile",
+      },
+    ],
+  });
+
   return res.status(200).send({ data: user });
 };
 
