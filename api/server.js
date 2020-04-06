@@ -9,6 +9,8 @@ const middleware = require("./middleware");
 // routes
 const { router: userRoutes } = require("./routes/user/userRoute");
 const { router: appRoutes } = require("./routes/app/appRoute");
+const { router: profileRoutes } = require("./routes/profile/profileRoute");
+const { router: notificationPreferenceRoutes } = require("./routes/notificationPreference/notificationPreferenceRoute");
 // constants
 const { URL, PORT } = require("./constants");
 
@@ -25,6 +27,8 @@ applyMiddleware(middleware, app);
 
 app.use("/user", userRoutes);
 app.use("/app", appRoutes);
+app.use("/user", profileRoutes);
+app.use("/app", notificationPreferenceRoutes);
 
 // create a server
 const server = http.createServer(app);
@@ -37,6 +41,6 @@ sequelize
       console.log(`server is running on PORT: ${PORT}`);
     });
   })
-  .catch(err => {
+  .catch((err) => {
     console.error("unable to connect to the database:", err);
   });
