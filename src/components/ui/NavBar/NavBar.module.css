@@ -1,4 +1,37 @@
 .nav_bar {
   background: lightseagreen;
   padding: 20px;
+  max-width: 125px;
+  width: 125px;
+  min-width: 125px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.nav_bar_title {
+  font-size: 16px;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.nav_bar_user_info_container {
+  max-width: 100px;
+  position: relative;
+}
+
+.nav_bar_user_icon {
+  cursor: pointer;
+}
+
+.nav_bar_profile_container {
+  position: absolute;
+  left: 106px;
+  top: -100px;
+  bottom: 0;
+  background: red;
+  border-radius: 5px;
+  padding: 15px;
+  text-align: left;
 }

@@ -4,6 +4,9 @@ import s from "./CreateNewAccount.module.css";
 // API
 import * as userAPI from "./../../../helpers/apiHelpers/user";
 
+// helpers
+import history from "./../../../helpers/history";
+
 class CreateNewAccount extends Component {
   constructor(props) {
     super(props);
@@ -15,25 +18,27 @@ class CreateNewAccount extends Component {
       _phoneNumber: "",
       _organizationName: "",
       _organizationSize: "",
-      _isAdmin: false
+      _isAdmin: false,
     };
   }
 
-  onHandleValidate = e => {
+  onHandleValidate = (e) => {
     console.log("validating");
   };
-  onHandleChange = e => {
+  onHandleChange = (e) => {
     console.log(e.target.value, e.target.id);
     const { value, id } = e.target;
     return this.setState({
-      [id]: value
+      [id]: value,
     });
   };
-  onHandleSubmit = async e => {
+  onHandleSubmit = async (e) => {
     e.preventDefault();
     try {
       const { data: newUser } = await userAPI.onCreateUser({ body: this.state });
       console.log(newUser);
+      history.push("/");
+      return document.location.reload("/");
     } catch (err) {
       console.log(err);
     }
@@ -47,7 +52,7 @@ class CreateNewAccount extends Component {
       _isMatchingPassword,
       _email,
       _isAdmin,
-      _phoneNumber
+      _phoneNumber,
     } = this.state;
     return (
       <section className={s.create_new_account}>
@@ -119,9 +124,9 @@ class CreateNewAccount extends Component {
               <input
                 type='checkbox'
                 value={_isAdmin}
-                onChange={e => {
+                onChange={(e) => {
                   this.setState({
-                    _isAdmin: !this.state._isAdmin
+                    _isAdmin: !this.state._isAdmin,
                   });
                 }}
                 id='_isAdmin'

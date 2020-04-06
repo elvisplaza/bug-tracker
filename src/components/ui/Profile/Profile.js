@@ -19,29 +19,29 @@ class Profile extends Component {
       _displayName: "",
       _notificationPreference: {},
       _organization: "",
-      _user: {}
+      _user: {},
     };
   }
   componentDidMount() {
     const { userId } = this.props.match.params;
     this.onGetUser(userId);
   }
-  onGetUser = async id => {
+  onGetUser = async (id) => {
     const { data: userInfo } = await userAPI.onGetUserById({ id });
     console.log(userInfo, "user info");
     return this.setState({ _user: userInfo });
   };
-  onHandleChange = e => {
+  onHandleChange = (e) => {
     const { value, id } = e.target;
     return this.setState({
-      [id]: value
+      [id]: value,
     });
   };
 
-  onHandleValidation = e => {
+  onHandleValidation = (e) => {
     return;
   };
-  onCreateNewProject = async e => {
+  onCreateNewProject = async (e) => {
     const body = {
       _name: "tester",
       _clientLanguage: "js",
@@ -50,7 +50,7 @@ class Profile extends Component {
       _lastUpdated: new Date(),
       _description: "something to add",
       _websiteUrl: "https://google.com",
-      _organizationId: this.state._user.organization
+      _organizationId: this.state._user.organization,
     };
     const { data: newProject } = await appAPI.onCreateApp({ body });
     console.log("i created a projecT!!!", newProject);
@@ -64,11 +64,11 @@ class Profile extends Component {
       _lastName,
       _displayName,
       _phoneNumber,
-      _notificationPreference
+      _notificationPreference,
     } = this.state;
     return (
       <section className={s.profile}>
-        <h2> I'm a Profile!</h2>
+        <h2 className={s.profile_title}> Profile</h2>
         <form className={s.profile_form}>
           <label htmlFor='_email'>
             <input

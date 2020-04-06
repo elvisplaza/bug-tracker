@@ -9,8 +9,8 @@ const createUser = async (req, res) => {
 
   try {
     const newUser = await Organization.create({
-      name: _organizationName
-    }).then(org => {
+      name: _organizationName,
+    }).then((org) => {
       org
         .createUser({
           email: _email,
@@ -18,13 +18,28 @@ const createUser = async (req, res) => {
           is_admin: _isAdmin,
           password: _password,
           is_phone_valid: false,
-          is_email_valid: false
+          is_email_valid: false,
         })
-        .then(user => {
-          return res.status(201).send({ data: user });
+        .then((user) => {
+          user
+            .createProfile({
+              email: user.email,
+              age: new Date(),
+              is_admin: user._isAdmin,
+              first_name: "",
+              last_name: "",
+              display_name: `${_organizationName}NewUser`,
+            })
+            .then((profile) => {
+              profile.createNotificationPreference({
+                marketing: true,
+                project: true,
+              });
+
+              return res.status(201).send({ data: profile });
+            });
         });
     });
-    // console.log("new user %%%", newUser);
   } catch (err) {
     throw err;
   }
@@ -35,9 +50,9 @@ const getUser = async (req, res) => {
   try {
     const user = await User.findOne({
       where: {
-        email
+        email,
       },
-      include: Organization
+      include: Organization,
     });
     const token = await tokenService.issueToken(user);
 
@@ -57,5 +72,5 @@ const getOneUser = async (req, res) => {
 module.exports = {
   createUser,
   getUser,
-  getOneUser
+  getOneUser,
 };

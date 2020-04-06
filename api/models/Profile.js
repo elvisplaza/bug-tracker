@@ -6,72 +6,72 @@ module.exports = (sequelize, DataTypes) => {
       id: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV1,
-        primaryKey: true
+        primaryKey: true,
       },
       email: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: ""
+        defaultValue: "",
       },
       age: {
         type: DataTypes.DATE,
         allowNull: false,
-        defaultValue: 0
+        defaultValue: 0,
       },
       is_admin: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
-        defaultValue: false
+        defaultValue: false,
       },
       first_name: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       last_name: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: ""
+        defaultValue: "",
       },
       display_name: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: ""
+        defaultValue: "",
       },
       notification_preference: {
         type: DataTypes.UUID,
         references: {
           model: "NotificationPreference",
-          key: "id"
+          key: "id",
         },
         onUpdate: "CASCADE",
-        onDelete: "SET NULL"
+        onDelete: "SET NULL",
       },
       user: {
         type: DataTypes.UUID,
         references: {
           model: "User",
-          key: "id"
+          key: "id",
         },
         onUpdate: "CASCADE",
-        onDelete: "SET NULL"
+        onDelete: "SET NULL",
       },
       createdAt: {
         allowNull: false,
-        type: DataTypes.DATE
+        type: DataTypes.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: DataTypes.DATE
+        type: DataTypes.DATE,
       },
       deletedAt: {
         allowNull: true,
-        type: DataTypes.DATE
-      }
+        type: DataTypes.DATE,
+      },
     },
     { freezeTableName: true }
   );
-  Profile.associate = function(models) {
-    Profile.belongsTo(models.NotificationPreference);
+  Profile.associate = function (models) {
+    Profile.belongsTo(models.NotificationPreference, { foreignKey: "notification_preference" });
     Profile.belongsTo(models.User);
   };
   return Profile;

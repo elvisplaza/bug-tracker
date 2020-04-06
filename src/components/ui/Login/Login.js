@@ -13,26 +13,26 @@ class Login extends Component {
     super(props);
     this.state = {
       _email: "",
-      _password: ""
+      _password: "",
     };
   }
 
-  onHandleValidate = e => {
+  onHandleValidate = (e) => {
     console.log("validating");
   };
-  onHandleChange = e => {
+  onHandleChange = (e) => {
     const { id, value } = e.target;
     return this.setState({
-      [id]: value
+      [id]: value,
     });
   };
-  onHandleSubmit = async e => {
+  onHandleSubmit = async (e) => {
     e.preventDefault();
     const { _email, _password } = this.state;
     console.log(stringify({ email: "haha", password: "haha" }));
     try {
       const {
-        data: [token, user]
+        data: [token, user],
       } = await userAPI.onGetUser({ email: _email, password: _password });
       setToken(token);
       console.log("user info", user);
