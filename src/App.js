@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { NavBar, NoMatch } from "./components/ui";
-import { CreateNewAccount, Profile, Home, Login } from "./components/modules";
+import { CreateNewAccount, Profile, Home, Login, Application } from "./components/modules";
 import "./App.css";
 
 function App() {
-  const [_isUser, setIsUser] = useState(true);
   return (
     <section className='App'>
       <NavBar />
@@ -15,6 +14,7 @@ function App() {
           <Route exact path='/home/:userId' component={Home} />
           <Route exact path='/create-account' component={CreateNewAccount} />
           <Route exact path='/profile/:userId' component={Profile} />
+          <Route exact path='/app/:profileId' component={Application} />
           <Route path='*' component={NoMatch} />
         </Switch>{" "}
       </div>

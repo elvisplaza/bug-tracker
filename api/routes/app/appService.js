@@ -9,11 +9,11 @@ const createApp = async (req, res) => {
     _lastUpdated,
     _description,
     _websiteUrl,
-    _organizationId
+    _organizationId,
   } = req.body;
 
   try {
-    await App.create({
+    const newApp = await App.create({
       name: _name,
       client_language: _clientLanguage,
       server_language: _serverLanguage,
@@ -21,13 +21,15 @@ const createApp = async (req, res) => {
       last_updated: _lastUpdated,
       description: _description,
       website_url: _websiteUrl,
-      organization: _organizationId
+      organization: _organizationId,
     });
+
+    return res.status(200).send({ data: newApp });
   } catch (err) {
     throw err;
   }
 };
 
 module.exports = {
-  createApp
+  createApp,
 };

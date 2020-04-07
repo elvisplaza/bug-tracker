@@ -5,6 +5,10 @@ import s from "./CreateNewApp.module.css";
 // components
 import { Button } from "./../../ui/";
 
+// helpers
+import * as appAPI from "./../../../helpers/apiHelpers/app";
+import history from "./../../../helpers/history";
+
 class CreateNewApp extends Component {
   constructor() {
     super();
@@ -13,9 +17,11 @@ class CreateNewApp extends Component {
       _clientLanguage: "",
       _serverLanguage: "",
       _databaseType: "",
-      _lastUpdated: "",
+      _lastUpdated: new Date(),
       _description: "",
       _websiteUrl: "",
+      // TODO: GET CONTEXT!
+      _organizationId: "af2a0c70-7840-11ea-8045-010dc24b6a44",
     };
   }
   onHandleChange = (e) => {
@@ -23,6 +29,18 @@ class CreateNewApp extends Component {
     return this.setState({
       [id]: value,
     });
+  };
+
+  onCreateApp = async (e) => {
+    e.preventDefault();
+    try {
+      const { data: newApp } = await appAPI.onCreateApp({ body: this.state });
+      console.log("new app made bitches!", newApp);
+      history.push(`/app/${newApp.id}`);
+      document.location.reload();
+    } catch (err) {
+      console.log(err);
+    }
   };
   render() {
     const {
@@ -37,7 +55,7 @@ class CreateNewApp extends Component {
     return (
       <section className={s.create_new_app}>
         <h2 className={s.create_new_app_title}>New App</h2>
-        <form className={s.create_new_app_form}>
+        <form className={s.create_new_app_form} onSubmit={this.onCreateApp}>
           <label htmlFor='_name'>
             <input
               type='text'
@@ -90,7 +108,7 @@ class CreateNewApp extends Component {
             <input
               type='text'
               id='_websiteUrl'
-              placeholder='Database used'
+              placeholder='Website URL'
               value={_websiteUrl}
               className={s.create_new_app_form_input}
               onChange={this.onHandleChange}
