@@ -6,64 +6,64 @@ module.exports = (sequelize, DataTypes) => {
       id: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV1,
-        primaryKey: true
+        primaryKey: true,
       },
       name: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       client_language: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: "javascript"
+        defaultValue: "javascript",
       },
       server_language: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: "node"
+        defaultValue: "node",
       },
       database_type: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       last_updated: {
         type: DataTypes.DATE,
-        allowNull: false
+        allowNull: false,
       },
       description: {
         type: DataTypes.STRING,
-        allowNull: true
+        allowNull: true,
       },
       website_url: {
         type: DataTypes.STRING,
-        allowNull: true
+        allowNull: true,
       },
       organization: {
         type: DataTypes.UUID,
         references: {
           model: "Organization",
-          key: "id"
+          key: "id",
         },
         onUpdate: "CASCADE",
-        onDelete: "SET NULL"
+        onDelete: "SET NULL",
       },
       createdAt: {
         allowNull: false,
-        type: DataTypes.DATE
+        type: DataTypes.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: DataTypes.DATE
+        type: DataTypes.DATE,
       },
-      updatedAt: {
+      deletedAt: {
         allowNull: true,
-        type: DataTypes.DATE
-      }
+        type: DataTypes.DATE,
+      },
     },
 
     { freezeTableName: true }
   );
-  App.associate = function(models) {
+  App.associate = function (models) {
     // associations can be defined here
     App.belongsTo(models.Organization, { foreignKey: "organization" });
     App.hasMany(models.Bug, { foreignKey: "bugs" });

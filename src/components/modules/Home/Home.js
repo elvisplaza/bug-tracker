@@ -5,12 +5,13 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 // components
 import { ToolTip, ReactModal } from "./../../ui/";
+import { CreateNewApp } from "./../../modules/";
 
 class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isShowCreateAppModal: false,
+      isShowCreateAppModal: true,
       query: "",
     };
   }
@@ -37,7 +38,7 @@ class Home extends Component {
             <FontAwesomeIcon icon={faPlus} className={s.icon} />
           </ToolTip>
           <ReactModal isOpen={isShowCreateAppModal} onClose={this.onShowModal}>
-            <h2>i'm a modal!</h2>
+            <CreateNewApp />
           </ReactModal>
           <form className={s.home_form}>
             <label htmlFor='query'>

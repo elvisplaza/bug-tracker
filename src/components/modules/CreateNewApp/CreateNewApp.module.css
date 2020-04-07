@@ -1,0 +1,31 @@
+.create_new_app_form {
+  display: flex;
+  flex-direction: column;
+}
+/* :TODO: add to common css  */
+
+textarea {
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 5px 5px;
+  margin-bottom: 15px;
+  min-width: 150px;
+  resize: none;
+}
+textarea::placeholder {
+  font-size: 12px;
+}
+.create_new_app_title {
+  text-align: center;
+  margin: 0 auto;
+  margin-bottom: 15px;
+}
+textarea:focus {
+  border-color: lightseagreen;
+}
+.button_container {
+  text-align: center;
+}
+.create_new_app_form_input {
+  width: 100%;
+}
