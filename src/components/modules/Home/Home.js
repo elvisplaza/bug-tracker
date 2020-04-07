@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import s from "./Home.module.css";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 // components
-import { ToolTip } from "./../../ui/";
+import { ToolTip, ReactModal } from "./../../ui/";
 
 class Home extends Component {
   constructor(props) {
@@ -22,8 +21,11 @@ class Home extends Component {
     });
   };
 
-  onCreateNewProject = (e) => {
-    console.log("creating new project!!");
+  onShowModal = (e) => {
+    console.log(e.target.id);
+    return this.setState((prevState) => ({
+      isShowCreateAppModal: !prevState.isShowCreateAppModal,
+    }));
   };
   render() {
     const { query, isShowCreateAppModal } = this.state;
@@ -31,10 +33,12 @@ class Home extends Component {
       <section className={s.home}>
         <h2>Apps will be displayed here</h2>
         <div className={s.home_search_bar_container}>
-          <ToolTip text='Create new app' onClick={this.onCreateNewProject} right>
+          <ToolTip text='Create new app' onClick={this.onShowModal} right>
             <FontAwesomeIcon icon={faPlus} className={s.icon} />
           </ToolTip>
-
+          <ReactModal isOpen={isShowCreateAppModal} onClose={this.onShowModal}>
+            <h2>i'm a modal!</h2>
+          </ReactModal>
           <form className={s.home_form}>
             <label htmlFor='query'>
               <input
