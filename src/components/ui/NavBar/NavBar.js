@@ -11,11 +11,11 @@ const NavBar = (props) => {
   // ================== end of state =======================
 
   const onShowModal = (e) => setIsShowModal((prevIsShowModal) => !prevIsShowModal);
-
-  return (
+  // make sure to add contextAPI to pass around userId
+  TODO: return (
     <section className={s.nav_bar}>
       <h2 className={s.nav_bar_title}>
-        <a href='/home'>Buginator</a>
+        <a href='/home/af2be130-7840-11ea-8045-010dc24b6a44'>Buginator</a>
       </h2>
       <div className={s.nav_bar_user_info_container}>
         <img
