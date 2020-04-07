@@ -1,10 +1,13 @@
 import React, { Component } from "react";
-import { useParams } from "react-router-dom";
 import s from "./Profile.module.css";
+
+// component
+import { Button } from "./../../ui";
 
 // apiHelpers
 import * as userAPI from "./../../../helpers/apiHelpers/user";
 import * as appAPI from "./../../../helpers/apiHelpers/app";
+import * as profileAPI from "./../../../helpers/apiHelpers/profile";
 
 class Profile extends Component {
   constructor(props) {
@@ -30,6 +33,7 @@ class Profile extends Component {
     const { data: userInfo } = await userAPI.onGetUserById({ id });
     console.log(userInfo, "user info");
     return this.setState({
+      _user: userInfo,
       _email: userInfo.email,
       _age: userInfo.Profile.age,
       _isAdmin: userInfo.is_admin,
@@ -47,23 +51,25 @@ class Profile extends Component {
     });
   };
 
-  onHandleValidation = (e) => {
-    return;
+  onHandleValidation = (e) => {};
+
+  onCancelChanges = (e) => {
+    const { id: userId } = this.state._user;
+    return this.onGetUser(userId);
   };
-  onCreateNewProject = async (e) => {
-    const body = {
-      _name: "tester",
-      _clientLanguage: "js",
-      _serverLanguage: "node",
-      _databaseType: "sql",
-      _lastUpdated: new Date(),
-      _description: "something to add",
-      _websiteUrl: "https://google.com",
-      _organizationId: this.state._user.organization,
-    };
-    const { data: newProject } = await appAPI.onCreateApp({ body });
-    console.log("i created a projecT!!!", newProject);
+
+  onSaveChanges = async (e) => {
+    e.preventDefault();
+    const { id: profileId } = this.state._user.Profile;
+    try {
+      const { data: profileUpdate } = profileAPI.onUpdateProfileById({ body: this.state, profileId });
+
+      console.log(profileUpdate, "profile is updated!");
+    } catch (err) {
+      console.log(err);
+    }
   };
+
   render() {
     const {
       _email,
@@ -77,7 +83,7 @@ class Profile extends Component {
       _notificationPreference,
     } = this.state;
     return (
-      <section className={s.profile}>
+      <section className={s.profile} onSubmit={this.onSaveChanges}>
         <h2 className={s.profile_title}> Profile</h2>
         <form className={s.profile_form}>
           <label htmlFor='_organization' className={s.profile_form_label}>
@@ -144,6 +150,12 @@ class Profile extends Component {
               value={_phoneNumber}
             />
           </label>
+          <Button type='submit' green>
+            Save
+          </Button>
+          <Button type='button' onClick={this.onCancelChanges}>
+            Cancel
+          </Button>
         </form>
       </section>
     );

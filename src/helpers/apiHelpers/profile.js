@@ -2,6 +2,7 @@ import axios from "axios";
 
 // helpers
 import { stringify } from "./../stringify";
+
 const url = "http://localhost:3001";
 
 export const onCreateProfile = ({ body = {} }) => {
@@ -17,22 +18,15 @@ export const onCreateProfile = ({ body = {} }) => {
     });
 };
 
-// export const onGetUser = ({ email = "", password = "" }) => {
-//   const path = `${url}/user?${stringify({ email, password })}`;
-//   return axios
-//     .get(path)
-//     .then((data) => {
-//       return data.data;
-//     })
-//     .catch((err) => {
-//       throw err;
-//     });
-// };
-
-// export const onGetUserById = ({ id }) => {
-//   const path = `${url}/user/${id}`;
-//   return axios.get(path).then((data) => {
-//     console.log("dataaa from getting user by id", data.data);
-//     return data.data;
-//   });
-// };
+export const onUpdateProfileById = ({ body = {}, profileId = "" }) => {
+  const path = `${url}/profile/${profileId}`;
+  return axios
+    .put(path, body)
+    .then((data) => {
+      console.log(data, "updated profile!");
+      return data.data;
+    })
+    .catch((err) => {
+      throw err;
+    });
+};

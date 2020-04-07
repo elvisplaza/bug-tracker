@@ -26,7 +26,12 @@ const getProfile = async (req, res) => {
   return res.status(200).send({ data: profile });
 };
 
+const updateProfile = async (req, res) => {
+  const { _first_name } = req.body;
+  console.log("i'm updating profile!");
+};
 module.exports = {
   createProfile,
   getProfile,
+  updateProfile,
 };

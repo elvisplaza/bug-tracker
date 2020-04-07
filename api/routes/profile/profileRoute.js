@@ -1,5 +1,5 @@
 const express = require("express");
-const { createProfile, getProfile } = require("./profileService");
+const { createProfile, getProfile, updateProfile } = require("./profileService");
 
 const router = express.Router();
 
@@ -8,6 +8,6 @@ router
   .route("/")
   .post(createProfile);
 
-router.route("/:id").get(getProfile);
+router.route("/:id").get(getProfile).put(updateProfile);
 
 exports.router = router;
