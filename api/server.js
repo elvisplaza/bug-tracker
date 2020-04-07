@@ -27,7 +27,7 @@ applyMiddleware(middleware, app);
 
 app.use("/user", userRoutes);
 app.use("/app", appRoutes);
-app.use("/user", profileRoutes);
+app.use("/profile", profileRoutes);
 app.use("/app", notificationPreferenceRoutes);
 
 // create a server

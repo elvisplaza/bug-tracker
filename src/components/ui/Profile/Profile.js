@@ -16,7 +16,7 @@ class Profile extends Component {
     this.state = {
       _email: "",
       _age: "",
-      _isAdmin: "",
+      _isAdmin: true,
       _firstName: "",
       _lastName: "",
       _displayName: "",
@@ -40,7 +40,7 @@ class Profile extends Component {
       _organization: userInfo.Organization.name,
       _firstName: userInfo.Profile.first_name,
       _lastName: userInfo.Profile.last_name,
-      _displayName: userInfo.Profile._displayName,
+      _displayName: userInfo.Profile.display_name,
       _phoneNumber: userInfo.phone_number,
     });
   };
@@ -131,15 +131,15 @@ class Profile extends Component {
             <input
               type='text'
               id='_displayName'
+              value={_displayName}
               onBlur={this.onHandleValidation}
               onChange={this.onHandleChange}
-              value={_displayName}
             />
           </label>
-          <label htmlFor='_isAdmin'>
+          {/*<label htmlFor='_isAdmin'>
             <p className={s.profile_form_p}>Organization Admin</p>
-            <input type='checkbox' id='_isAdmin' value={_isAdmin} />
-          </label>
+            <input type='checkbox' id='_isAdmin' value='0' />
+    </label> */}
           <label htmlFor='_phoneNumber'>
             <p className={s.profile_form_p}>Number</p>
             <input

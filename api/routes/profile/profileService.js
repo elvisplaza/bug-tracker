@@ -27,8 +27,29 @@ const getProfile = async (req, res) => {
 };
 
 const updateProfile = async (req, res) => {
-  const { _first_name } = req.body;
-  console.log("i'm updating profile!");
+  const { _firstName, _lastName, _displayName } = req.body;
+  const { profileId } = req.params;
+  // console.log("i'm updating profile!", req.body);
+
+  const profile = await Profile.findByPk(profileId);
+  console.log(profile, "i'm the profile");
+  profile.first_name = _firstName;
+  profile.last_name = _lastName;
+  profile.display_name = _displayName;
+
+  profile.save();
+
+  return res.status(200).send({ data: profile });
+
+  // //  const brandObjArr = Object.entries(brandObj);
+  // //  const brand = await Brand.findById(id);
+  //  for (let i = 0; i < brandObjArr.length; i += 1) {
+  //    let key = brandObjArr[i][0];
+  //    let value = brandObjArr[i][1];
+  //    if (brand[key] !== value) {
+  //      brand[key] = value;
+  //    }
+  //  }
 };
 module.exports = {
   createProfile,

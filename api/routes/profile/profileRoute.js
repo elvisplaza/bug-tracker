@@ -4,10 +4,10 @@ const { createProfile, getProfile, updateProfile } = require("./profileService")
 const router = express.Router();
 
 router
-  // GET /user
+  // GET /profile
   .route("/")
   .post(createProfile);
 
-router.route("/:id").get(getProfile).put(updateProfile);
+router.route("/:profileId").get(getProfile).put(updateProfile);
 
 exports.router = router;
