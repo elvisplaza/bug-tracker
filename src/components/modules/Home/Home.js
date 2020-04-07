@@ -4,6 +4,9 @@ import s from "./Home.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
+// components
+import { ToolTip } from "./../../ui/";
+
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -18,13 +21,20 @@ class Home extends Component {
       [id]: value,
     });
   };
+
+  onCreateNewProject = (e) => {
+    console.log("creating new project!!");
+  };
   render() {
     const { query, isShowCreateAppModal } = this.state;
     return (
       <section className={s.home}>
-        <h2>projects will be displayed here</h2>
+        <h2>Apps will be displayed here</h2>
         <div className={s.home_search_bar_container}>
-          <FontAwesomeIcon icon={faPlus} className={s.icon} />
+          <ToolTip text='Create new app' onClick={this.onCreateNewProject} right>
+            <FontAwesomeIcon icon={faPlus} className={s.icon} />
+          </ToolTip>
+
           <form className={s.home_form}>
             <label htmlFor='query'>
               <input

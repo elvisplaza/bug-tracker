@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import s from "./Profile.module.css";
 
 // component
-import { Button } from "./../../ui";
+import { Button, ToolTip } from "./../../ui";
 
 // apiHelpers
 import * as userAPI from "./../../../helpers/apiHelpers/user";

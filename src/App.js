@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { Login, NavBar, Profile, NoMatch, Home } from "./components/ui";
-import { CreateNewAccount } from "./components/modules";
+import { NavBar, NoMatch } from "./components/ui";
+import { CreateNewAccount, Profile, Home, Login } from "./components/modules";
 import "./App.css";
 
 function App() {

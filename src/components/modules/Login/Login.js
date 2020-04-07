@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import history from "./../../../helpers/history";
+import history from "../../../helpers/history";
 import s from "./Login.module.css";
 
 // API
-import * as userAPI from "./../../../helpers/apiHelpers/user";
+import * as userAPI from "../../../helpers/apiHelpers/user";
 
 // helpers
-import { stringify } from "./../../../helpers/stringify";
+import { stringify } from "../../../helpers/stringify";
 import { setToken } from "../../../helpers/tokenService";
 class Login extends Component {
   constructor(props) {
