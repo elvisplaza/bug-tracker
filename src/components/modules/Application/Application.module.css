@@ -1,0 +1,19 @@
+.application {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 20px;
+  text-align: left;
+}
+.application_title {
+  margin: 0;
+}
+.application_app_info_container {
+  display: flex;
+  justify-content: space-between;
+  text-align: left;
+  border-bottom: 2px solid lightseagreen;
+}
+.bold {
+  font-weight: 800;
+}

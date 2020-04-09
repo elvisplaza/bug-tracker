@@ -1,0 +1,22 @@
+.create_bug {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+.create_bug_form {
+  display: flex;
+  flex-direction: column;
+}
+.form_input {
+  width: 100%;
+}
+
+.form_select {
+  margin-bottom: 15px;
+}
+
+.form_p {
+  margin: 0;
+  margin-bottom: 5px;
+}

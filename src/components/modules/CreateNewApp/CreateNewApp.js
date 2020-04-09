@@ -35,7 +35,6 @@ class CreateNewApp extends Component {
     e.preventDefault();
     try {
       const { data: newApp } = await appAPI.onCreateApp({ body: this.state });
-      console.log("new app made bitches!", newApp);
       history.push(`/app/${newApp.id}`);
       document.location.reload();
     } catch (err) {

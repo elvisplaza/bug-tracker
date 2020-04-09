@@ -1,11 +1,12 @@
 const express = require("express");
-const { createApp } = require("./appService");
+const { createApp, getAppById } = require("./appService");
 
 const router = express.Router();
 
 router
-  // GET /user
+  // GET /app
   .route("/")
   .post(createApp);
 
+router.route("/:appId").get(getAppById);
 exports.router = router;

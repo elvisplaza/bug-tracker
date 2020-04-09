@@ -5,3 +5,5 @@ export { default as Home } from "./Home/Home.js";
 export { default as Login } from "./Login/Login";
 export { default as CreateNewApp } from "./CreateNewApp/CreateNewApp";
 export { default as Application } from "./Application/Application";
+
+export { default as CreateBug } from "./CreateBug/CreateBug";

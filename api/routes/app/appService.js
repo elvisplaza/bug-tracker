@@ -30,6 +30,17 @@ const createApp = async (req, res) => {
   }
 };
 
+const getAppById = async (req, res) => {
+  const { appId } = req.params;
+
+  try {
+    const app = await App.findByPk(appId);
+    res.status(200).send({ data: app });
+  } catch (err) {
+    throw err;
+  }
+};
 module.exports = {
   createApp,
+  getAppById,
 };

@@ -11,8 +11,8 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isShowCreateAppModal: true,
-      query: "",
+      _isShowCreateAppModal: false,
+      _query: "",
     };
   }
   onHandleChange = (e) => {
@@ -25,11 +25,11 @@ class Home extends Component {
   onShowModal = (e) => {
     console.log(e.target.id);
     return this.setState((prevState) => ({
-      isShowCreateAppModal: !prevState.isShowCreateAppModal,
+      _isShowCreateAppModal: !prevState._isShowCreateAppModal,
     }));
   };
   render() {
-    const { query, isShowCreateAppModal } = this.state;
+    const { _query, _isShowCreateAppModal } = this.state;
     return (
       <section className={s.home}>
         <h2>Apps will be displayed here</h2>
@@ -37,15 +37,15 @@ class Home extends Component {
           <ToolTip text='Create new app' onClick={this.onShowModal} right>
             <FontAwesomeIcon icon={faPlus} className={s.icon} />
           </ToolTip>
-          <ReactModal isOpen={isShowCreateAppModal} onClose={this.onShowModal}>
+          <ReactModal isOpen={_isShowCreateAppModal} onClose={this.onShowModal}>
             <CreateNewApp />
           </ReactModal>
           <form className={s.home_form}>
             <label htmlFor='query'>
               <input
                 type='text'
-                id='query'
-                value={query}
+                id='_query'
+                value={_query}
                 onChange={this.onHandleChange}
                 className={s.home_form_input}
               />

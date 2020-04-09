@@ -14,7 +14,7 @@ function App() {
           <Route exact path='/home/:userId' component={Home} />
           <Route exact path='/create-account' component={CreateNewAccount} />
           <Route exact path='/profile/:userId' component={Profile} />
-          <Route exact path='/app/:profileId' component={Application} />
+          <Route exact path='/app/:appId' component={Application} />
           <Route path='*' component={NoMatch} />
         </Switch>{" "}
       </div>
