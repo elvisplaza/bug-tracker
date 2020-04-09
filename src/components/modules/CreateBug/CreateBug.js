@@ -4,7 +4,7 @@ import s from "./CreateBug.module.css";
 
 // helpers
 import { riskLevels } from "./../../../helpers/formHelpers";
-
+import * as bugAPI from "./../../../helpers/apiHelpers/bug";
 // components
 import { Button } from "./../../ui/";
 class CreateBug extends Component {
@@ -12,8 +12,8 @@ class CreateBug extends Component {
     super();
     this.state = {
       _title: "",
-      _riskLevel: 0,
-      _isFixed: "",
+      _riskLevel: "",
+      _isFixed: false,
       _path: "",
       _expectedResult: "",
       _actualOutcome: "",
@@ -28,9 +28,14 @@ class CreateBug extends Component {
     });
   };
 
-  onCreateBug = (e) => {
+  onCreateBug = async (e) => {
     e.preventDefault();
-    console.log("i am creating a bug!");
+    try {
+      const { data: newBug } = await bugAPI.onCreateBug({ body: this.state });
+      console.log("newbug created!", newBug);
+    } catch (err) {
+      console.log(err);
+    }
   };
   render() {
     const { _title, _riskLevel, _isFixed, _path, _expectedResult, _actualOutcome, _stepsToFix } = this.state;

@@ -7,49 +7,49 @@ module.exports = (sequelize, DataTypes) => {
       id: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV1,
-        primaryKey: true
+        primaryKey: true,
       },
       title: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
       },
       risk_level: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
       },
       is_fixed: {
-        type: DataTypes.BOOLEAN
+        type: DataTypes.BOOLEAN,
       },
       path: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
       },
       expected_result: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
       },
       actual_outcome: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
       },
       steps_to_fix: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
       },
       deleteAt: {
         type: DataTypes.DATE,
-        allowNull: true
+        allowNull: true,
       },
       createdAt: {
         type: DataTypes.DATE,
-        allowNull: false
+        allowNull: false,
       },
       updatedAt: {
         type: DataTypes.DATE,
-        allowNull: false
-      }
+        allowNull: false,
+      },
     },
     {
-      freezeTableName: true
+      freezeTableName: true,
     }
   );
-  Bug.associate = function(models) {
+  Bug.associate = function (models) {
     // associations can be defined here
-    Bug.belongsTo(models.App);
+    Bug.belongsTo(models.App, { foreignKey: "bugs" });
     Bug.hasMany(models.Comment, { foreignKey: "comments" });
   };
   return Bug;

@@ -1,5 +1,5 @@
 const App = require("./../../models").App;
-
+const Bug = require("./../../models").Bug;
 const createApp = async (req, res) => {
   const {
     _name,
@@ -34,7 +34,16 @@ const getAppById = async (req, res) => {
   const { appId } = req.params;
 
   try {
-    const app = await App.findByPk(appId);
+    const app = await App.findAll({
+      where: {
+        id: appId,
+      },
+      include: [
+        {
+          model: Bug,
+        },
+      ],
+    });
     res.status(200).send({ data: app });
   } catch (err) {
     throw err;

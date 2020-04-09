@@ -15,7 +15,7 @@ class Application extends Component {
     this.state = {
       appId: "",
       app: {},
-      isShowBugModal: true,
+      isShowBugModal: false,
     };
   }
   componentDidMount() {
@@ -25,6 +25,7 @@ class Application extends Component {
 
   onGetApplication = async (appId) => {
     const { data: application } = await appAPI.onGetAppById({ appId });
+    console.log("application!", application);
     return this.setState({
       appId: application.id,
       app: application,

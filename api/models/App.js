@@ -47,6 +47,13 @@ module.exports = (sequelize, DataTypes) => {
         onUpdate: "CASCADE",
         onDelete: "SET NULL",
       },
+      bugs: {
+        type: DataTypes.UUID,
+        references: {
+          model: "Bug",
+          key: "id",
+        },
+      },
       createdAt: {
         allowNull: false,
         type: DataTypes.DATE,
