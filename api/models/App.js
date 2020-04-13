@@ -38,6 +38,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: true,
       },
+
       organization_id: {
         type: DataTypes.UUID,
         references: {
@@ -57,7 +58,7 @@ module.exports = (sequelize, DataTypes) => {
   App.associate = function (models) {
     // associations can be defined here
     App.belongsTo(models.Organization, { foreignKey: "organization_id", as: "organization" });
-    App.hasMany(models.Bug, { foreignKey: "bug_id", as: "app_bugs" });
+    App.hasMany(models.Bug, { foreignKey: "app_id", as: "bugs" });
   };
   return App;
 };

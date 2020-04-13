@@ -36,7 +36,14 @@ const getAppById = async (req, res) => {
   const { appId } = req.params;
 
   try {
-    const app = await App.findByPk(appId);
+    const app = await App.findByPk(appId, {
+      include: [
+        {
+          model: Bug,
+          as: "bugs",
+        },
+      ],
+    });
     res.status(200).send({ data: app });
   } catch (err) {
     throw err;

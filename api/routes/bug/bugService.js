@@ -12,7 +12,7 @@ const createBug = async (req, res) => {
       expected_result: _expectedResult,
       actual_outcome: _actualOutcome,
       steps_to_fix: _stepsToFix,
-      bug_id: appId,
+      app_id: appId,
     });
 
     return res.status(204).send({ data: newBug });
