@@ -40,7 +40,7 @@ const getAppById = async (req, res) => {
       include: [
         {
           model: Bug,
-          as: "bugs",
+          as: "app_bugs",
         },
       ],
     });

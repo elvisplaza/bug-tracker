@@ -38,7 +38,7 @@ module.exports = (sequelize, DataTypes) => {
   );
   Bug.associate = function (models) {
     // associations can be defined here
-    Bug.belongsTo(models.App, { foreignKey: "app_id", as: "bugs" });
+    Bug.belongsTo(models.App, { foreignKey: "app_id", as: "app_bugs" });
     Bug.hasMany(models.Comment, { foreignKey: "comments" });
   };
   return Bug;
