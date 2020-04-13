@@ -6,34 +6,34 @@ module.exports = (sequelize, DataTypes) => {
       id: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV1,
-        primaryKey: true
+        primaryKey: true,
       },
       like: {
         type: DataTypes.BOOLEAN,
-        defaultValue: false
+        defaultValue: false,
       },
       description: {
         type: DataTypes.STRING,
-        allowNull: false
-      },
-      createdAt: {
         allowNull: false,
-        type: DataTypes.DATE
       },
-      updatedAt: {
-        allowNull: true,
-        type: DataTypes.DATE
-      },
-      deletedAt: {
+      created_at: {
+        allowNull: false,
         type: DataTypes.DATE,
-        allowNull: true
-      }
+      },
+      updated_at: {
+        allowNull: true,
+        type: DataTypes.DATE,
+      },
+      deleted_at: {
+        type: DataTypes.DATE,
+        allowNull: true,
+      },
     },
     {
-      freezeTableName: true
+      freezeTableName: true,
     }
   );
-  Comment.associate = function(models) {
+  Comment.associate = function (models) {
     // associations can be defined here
     Comment.belongsTo(models.Bug);
   };

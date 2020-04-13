@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       email: {
-        type: DataTypes.UUID,
+        type: DataTypes.STRING,
         allowNull: false,
       },
       phone_number: {
@@ -28,50 +28,41 @@ module.exports = (sequelize, DataTypes) => {
       is_phone_valid: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
+        defaultValue: false,
       },
       is_admin: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: false,
       },
-      organization: {
+      organization_id: {
         type: DataTypes.UUID,
         references: {
           model: "Organization",
           key: "id",
         },
-        onUpdate: "CASCADE",
-        onDelete: "SET NULL",
       },
-      profile: {
-        type: DataTypes.UUID,
-        references: {
-          model: "Profile",
-          key: "id",
-        },
-        onUpdate: "CASCADE",
-        onDelete: "SET NULL",
-      },
-      createdAt: {
+      created_at: {
         allowNull: false,
         type: DataTypes.DATE,
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: DataTypes.DATE,
       },
-      deletedAt: {
+      deleted_at: {
         allowNull: true,
         type: DataTypes.DATE,
       },
     },
     {
+      underscored: true,
       freezeTableName: true,
     }
   );
   User.associate = function (models) {
-    User.belongsTo(models.Organization, { foreignKey: "organization" });
-    User.hasOne(models.Profile, { foreignKey: "user" });
+    User.belongsTo(models.Organization, { foreignKey: "organization_id", as: "user_company" });
+    User.hasOne(models.Profile, { foreignKey: "user_id", as: "user_profile" });
   };
   return User;
 };

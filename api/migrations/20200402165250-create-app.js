@@ -5,44 +5,44 @@ module.exports = {
       id: {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV1,
-        primaryKey: true
+        primaryKey: true,
       },
       name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       client_language: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       server_language: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       database_type: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       last_updated: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       description: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       website_url: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
-      updatedAt: {
+      updated_at: {
         allowNull: true,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   down: (queryInterface, Sequelize) => {
     return queryInterface.dropTable("App");
-  }
+  },
 };

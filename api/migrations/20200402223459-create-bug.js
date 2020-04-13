@@ -6,44 +6,44 @@ module.exports = {
       id: {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV1,
-        primaryKey: true
+        primaryKey: true,
       },
       title: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       risk_level: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       is_fixed: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
       },
       path: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       expected_result: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       actual_outcome: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       steps_to_fix: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       deleteAt: {
         type: Sequelize.DATE,
-        allowNull: true
+        allowNull: true,
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   down: (queryInterface, Sequelize) => {
     return queryInterface.dropTable("Bug");
-  }
+  },
 };

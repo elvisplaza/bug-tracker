@@ -12,13 +12,13 @@ module.exports = {
         last_name: "Plaza",
         display_name: "epapi",
         user_id: "6bb962f2-6f8e-11ea-bc55-0242ac130003",
-        createdAt: new Date(),
-        updatedAt: new Date()
-      }
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
     ]);
   },
 
   down: (queryInterface, Sequelize) => {
     return queryInterface.bulkDelete("User", null, {});
-  }
+  },
 };

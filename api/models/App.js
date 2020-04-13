@@ -54,15 +54,15 @@ module.exports = (sequelize, DataTypes) => {
           key: "id",
         },
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
         type: DataTypes.DATE,
       },
-      updatedAt: {
-        allowNull: false,
+      updated_at: {
+        allowNull: true,
         type: DataTypes.DATE,
       },
-      // deletedAt: {
+      // deleted_at: {
       //   allowNull: true,
       //   type: DataTypes.DATE,
       // },
@@ -72,7 +72,7 @@ module.exports = (sequelize, DataTypes) => {
   );
   App.associate = function (models) {
     // associations can be defined here
-    App.belongsTo(models.Organization, { foreignKey: "organization" });
+    App.belongsTo(models.Organization);
     App.hasMany(models.Bug, { foreignKey: "bugs" });
   };
   return App;
