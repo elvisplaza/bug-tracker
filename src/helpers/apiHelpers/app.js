@@ -15,7 +15,7 @@ export const onCreateApp = ({ body }) => {
 };
 
 export const onGetAppById = ({ appId = "" }) => {
-  const path = `${url}/app/${appId}`;
+  const path = `${url}/app/appId/${appId}`;
   return axios.get(path).then((data) => {
     return data.data;
   });

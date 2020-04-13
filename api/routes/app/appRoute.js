@@ -8,7 +8,8 @@ router
   .route("/")
   .post(createApp);
 
+router.route("/appId/:appId").get(getAppById);
+
 router.route("/:orgId").get(getAllAppsByOrg);
-router.route("/:appId").get(getAppById);
 
 exports.router = router;

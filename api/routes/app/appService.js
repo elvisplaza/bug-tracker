@@ -34,6 +34,7 @@ const createApp = async (req, res) => {
 
 const getAppById = async (req, res) => {
   const { appId } = req.params;
+  console.log("i am being rann *** ", appId);
 
   try {
     const app = await App.findByPk(appId, {
@@ -44,7 +45,7 @@ const getAppById = async (req, res) => {
         },
       ],
     });
-    res.status(200).send({ data: app });
+    return res.status(200).send({ data: app });
   } catch (err) {
     throw err;
   }
