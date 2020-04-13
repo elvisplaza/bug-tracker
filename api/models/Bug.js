@@ -30,26 +30,15 @@ module.exports = (sequelize, DataTypes) => {
       steps_to_fix: {
         type: DataTypes.STRING,
       },
-      deleteAt: {
-        type: DataTypes.DATE,
-        allowNull: true,
-      },
-      created_at: {
-        type: DataTypes.DATE,
-        allowNull: false,
-      },
-      updated_at: {
-        type: DataTypes.DATE,
-        allowNull: false,
-      },
     },
     {
       freezeTableName: true,
+      underscored: true,
     }
   );
   Bug.associate = function (models) {
     // associations can be defined here
-    Bug.belongsTo(models.App, { foreignKey: "bugs" });
+    Bug.belongsTo(models.App, { foreignKey: "bug_id", as: "app_bugs" });
     Bug.hasMany(models.Comment, { foreignKey: "comments" });
   };
   return Bug;

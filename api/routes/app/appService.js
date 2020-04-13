@@ -36,16 +36,7 @@ const getAppById = async (req, res) => {
   const { appId } = req.params;
 
   try {
-    const app = await App.findAll({
-      where: {
-        id: appId,
-      },
-      include: [
-        {
-          model: Bug,
-        },
-      ],
-    });
+    const app = await App.findByPk(appId);
     res.status(200).send({ data: app });
   } catch (err) {
     throw err;

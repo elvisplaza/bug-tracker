@@ -47,13 +47,6 @@ module.exports = (sequelize, DataTypes) => {
         onUpdate: "CASCADE",
         onDelete: "SET NULL",
       },
-      bugs: {
-        type: DataTypes.UUID,
-        references: {
-          model: "Bug",
-          key: "id",
-        },
-      },
     },
 
     {
@@ -64,7 +57,7 @@ module.exports = (sequelize, DataTypes) => {
   App.associate = function (models) {
     // associations can be defined here
     App.belongsTo(models.Organization, { foreignKey: "organization_id", as: "organization" });
-    App.hasMany(models.Bug, { foreignKey: "bugs" });
+    App.hasMany(models.Bug, { foreignKey: "bug_id", as: "app_bugs" });
   };
   return App;
 };
