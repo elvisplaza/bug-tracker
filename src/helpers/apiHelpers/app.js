@@ -20,3 +20,11 @@ export const onGetAppById = ({ appId = "" }) => {
     return data.data;
   });
 };
+
+export const onGetAllAppsByOrgId = ({ orgId = "" }) => {
+  const path = `${url}/app/${orgId}`;
+  return axios.get(path).then((data) => {
+    console.log("im bringing you all the apps", data.data);
+    return data.data;
+  });
+};

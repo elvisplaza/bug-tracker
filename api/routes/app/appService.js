@@ -49,7 +49,16 @@ const getAppById = async (req, res) => {
     throw err;
   }
 };
+
+const getAllAppsByOrg = async (req, res) => {
+  const { orgId } = req.params;
+  console.log(orgId, "%%% yesss i'm connected!");
+  const apps = await App.findAll({ where: { organization_id: orgId } });
+
+  return res.status(200).send({ data: apps });
+};
 module.exports = {
   createApp,
   getAppById,
+  getAllAppsByOrg,
 };

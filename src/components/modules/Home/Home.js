@@ -7,14 +7,27 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { ToolTip, ReactModal } from "./../../ui/";
 import { CreateNewApp } from "./../../modules/";
 
+// helpers
+import * as appAPI from "./../../../helpers/apiHelpers/app";
+
 class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
       _isShowCreateAppModal: false,
       _query: "",
+      _orgId: "91cb78f0-7d9d-11ea-9af7-6b43b194c2c2",
+      _apps: [],
     };
   }
+  componentDidMount() {
+    this.onGetAllApps();
+  }
+  onGetAllApps = async () => {
+    const { _orgId } = this.state;
+    console.log(_orgId, "i'm getting apps!");
+    const apps = await appAPI.onGetAllAppsByOrgId({ orgId: _orgId });
+  };
   onHandleChange = (e) => {
     const { value, id } = e.target;
     return this.setState({
