@@ -97,11 +97,11 @@ const getOneUser = async (req, res) => {
     include: [
       {
         model: Organization,
-        as: "Organization",
+        as: "user_company",
       },
       {
         model: Profile,
-        as: "Profile",
+        as: "user_profile",
       },
     ],
   });
