@@ -6,33 +6,36 @@ module.exports = (sequelize, DataTypes) => {
       id: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV1,
-        primaryKey: true
+        primaryKey: true,
       },
       marketing: {
         type: DataTypes.BOOLEAN,
-        defaultValue: true
+        defaultValue: true,
       },
       project: {
         type: DataTypes.BOOLEAN,
-        defaultValue: true
+        defaultValue: true,
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
-        type: DataTypes.DATE
+        type: DataTypes.DATE,
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
-        type: DataTypes.DATE
+        type: DataTypes.DATE,
       },
-      deletedAt: {
+      deleted_at: {
         allowNull: true,
-        type: DataTypes.DATE
-      }
+        type: DataTypes.DATE,
+      },
     },
-    { freezeTableName: true }
+    { underscored: true, freezeTableName: true }
   );
-  NotificationPreference.associate = function(models) {
-    NotificationPreference.hasOne(models.Profile, { foreignKey: "notification_preference" });
+  NotificationPreference.associate = function (models) {
+    NotificationPreference.hasOne(models.Profile, {
+      foreignKey: "notification_preference_id",
+      as: "notification_preference",
+    });
   };
   return NotificationPreference;
 };

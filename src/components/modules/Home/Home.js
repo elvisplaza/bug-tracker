@@ -4,8 +4,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 // components
-import { ToolTip, ReactModal } from "./../../ui/";
+import { ToolTip, ReactModal, AppCard } from "./../../ui/";
 import { CreateNewApp } from "./../../modules/";
+
+// helpers
+import * as appAPI from "./../../../helpers/apiHelpers/app";
 
 class Home extends Component {
   constructor(props) {
@@ -13,8 +16,21 @@ class Home extends Component {
     this.state = {
       _isShowCreateAppModal: false,
       _query: "",
+      _orgId: "91cb78f0-7d9d-11ea-9af7-6b43b194c2c2",
+      _apps: [],
     };
   }
+  componentDidMount() {
+    this.onGetAllApps();
+  }
+  onGetAllApps = async () => {
+    const { _orgId } = this.state;
+    console.log(_orgId, "i'm getting apps!");
+    const { data: apps } = await appAPI.onGetAllAppsByOrgId({ orgId: _orgId });
+    return this.setState({
+      _apps: apps,
+    });
+  };
   onHandleChange = (e) => {
     const { value, id } = e.target;
     return this.setState({
@@ -29,7 +45,7 @@ class Home extends Component {
     }));
   };
   render() {
-    const { _query, _isShowCreateAppModal } = this.state;
+    const { _query, _isShowCreateAppModal, _apps } = this.state;
     return (
       <section className={s.home}>
         <h2>Apps will be displayed here</h2>
@@ -51,6 +67,13 @@ class Home extends Component {
               />
             </label>
           </form>
+        </div>
+        <div className={s.home_app_container}>
+          {_apps.length > 0
+            ? _apps.map((app) => {
+                return <AppCard name={app.name} appId={app.id} />;
+              })
+            : "you Company does not have any application started :( "}
         </div>
       </section>
     );

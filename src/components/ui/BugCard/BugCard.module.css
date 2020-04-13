@@ -1,0 +1,25 @@
+.bug_card {
+  width: 150px;
+  height: 75px;
+  border: 1px solid black;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  padding: 5px;
+  cursor: pointer;
+  box-shadow: 5px 5px 16px rgba(0, 0, 0, 0.1), 0 5px 8px rgba(0, 0, 0, 0.1);
+}
+.bug_card:hover {
+  border: 2px solid lightseagreen;
+}
+.bug_card_title,
+.bug_card_p {
+  margin: 0;
+}
+
+.bug_card_title {
+  font-size: 12px;
+  font-weight: 800;
+}
+.bug_card_p {
+  font-size: 10px;
+}

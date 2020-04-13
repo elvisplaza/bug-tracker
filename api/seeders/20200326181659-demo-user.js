@@ -8,13 +8,13 @@ module.exports = {
         is_email_valid: false,
         is_phone_valid: false,
         is_admin: true,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      }
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
     ]);
   },
 
   down: (queryInterface, Sequelize) => {
     return queryInterface.bulkDelete("User", null, {});
-  }
+  },
 };

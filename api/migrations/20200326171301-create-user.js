@@ -7,54 +7,55 @@ module.exports = {
         id: {
           type: Sequelize.UUID,
           defaultValue: Sequelize.UUIDV1,
-          primaryKey: true
+          primaryKey: true,
         },
         password: {
           type: Sequelize.STRING,
-          allowNull: false
+          allowNull: false,
         },
 
         is_email_valid: {
           type: Sequelize.BOOLEAN,
-          allowNull: false
+          allowNull: false,
         },
         email: {
           type: Sequelize.STRING,
-          allowNull: false
+          allowNull: false,
         },
         phone_number: {
           type: Sequelize.STRING,
-          allowNull: true
+          allowNull: true,
         },
         is_phone_valid: {
           type: Sequelize.BOOLEAN,
-          allowNull: false
+          allowNull: false,
+          defaultValue: false,
         },
         is_admin: {
           type: Sequelize.BOOLEAN,
           allowNull: false,
-          defaultValue: false
+          defaultValue: false,
         },
-        createdAt: {
+        created_at: {
           allowNull: false,
-          type: Sequelize.DATE
+          type: Sequelize.DATE,
         },
-        updatedAt: {
+        updated_at: {
           allowNull: false,
-          type: Sequelize.DATE
+          type: Sequelize.DATE,
         },
-        deletedAt: {
+        deleted_at: {
           allowNull: true,
-          type: Sequelize.DATE
-        }
+          type: Sequelize.DATE,
+        },
       },
       {
-        underscored: true
-        // freezeTableName: true
+        underscored: true,
+        freezeTableName: true,
       }
     );
   },
   down: (queryInterface, Sequelize) => {
     return queryInterface.dropTable("User");
-  }
+  },
 };

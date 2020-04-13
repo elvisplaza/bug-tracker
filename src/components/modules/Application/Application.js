@@ -5,7 +5,7 @@ import cx from "classnames";
 import s from "./Application.module.css";
 
 // components
-import { ToolTip, ReactModal } from "./../../ui/";
+import { ToolTip, ReactModal, BugCard } from "./../../ui/";
 import { CreateBug } from "./../../modules/";
 // helpers
 import * as appAPI from "./../../../helpers/apiHelpers/app";
@@ -15,11 +15,13 @@ class Application extends Component {
     this.state = {
       appId: "",
       app: {},
-      isShowBugModal: false,
+      _appBugs: [],
+      _isShowBugModal: false,
     };
   }
   componentDidMount() {
     const { appId } = this.props.match.params;
+    console.log(appId);
     return this.onGetApplication(appId);
   }
 
@@ -29,15 +31,16 @@ class Application extends Component {
     return this.setState({
       appId: application.id,
       app: application,
+      _appBugs: application.app_bugs,
     });
   };
   onShowModal = (e) => {
     return this.setState((prevState) => ({
-      isShowBugModal: !prevState.isShowBugModal,
+      _isShowBugModal: !prevState._isShowBugModal,
     }));
   };
   render() {
-    const { app, isShowBugModal } = this.state;
+    const { app, _isShowBugModal, appId, _appBugs } = this.state;
     const { client_language, database_type, description, name, server_language, website_url } = app;
 
     return (
@@ -69,12 +72,25 @@ class Application extends Component {
           {/* // =============== bug section ============== */}
         </div>
         <div className={s.application_bug_container}>
-          <ReactModal isOpen={isShowBugModal} onClose={this.onShowModal}>
-            <CreateBug />
+          <ReactModal isOpen={_isShowBugModal} onClose={this.onShowModal}>
+            <CreateBug applicationId={appId} />
           </ReactModal>
           <ToolTip text='Add Bug' onClick={this.onShowModal} right>
             <FontAwesomeIcon icon={faPlus} className={s.icon} />
           </ToolTip>
+          <div>
+            {_appBugs.length > 0 &&
+              _appBugs.map((bug) => {
+                return (
+                  <BugCard
+                    title={bug.title}
+                    riskLevel={bug.risk_level}
+                    expectedResult={bug.expected_result}
+                    isFixed={bug.is_fixed}
+                  />
+                );
+              })}
+          </div>
         </div>
       </section>
     );

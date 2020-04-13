@@ -37,7 +37,14 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         defaultValue: "",
       },
-      notification_preference: {
+      user_id: {
+        type: DataTypes.UUID,
+        references: {
+          model: "User",
+          key: "id",
+        },
+      },
+      notification_preference_id: {
         type: DataTypes.UUID,
         references: {
           model: "NotificationPreference",
@@ -46,33 +53,30 @@ module.exports = (sequelize, DataTypes) => {
         onUpdate: "CASCADE",
         onDelete: "SET NULL",
       },
-      user: {
-        type: DataTypes.UUID,
-        references: {
-          model: "User",
-          key: "id",
-        },
-        onUpdate: "CASCADE",
-        onDelete: "SET NULL",
-      },
-      createdAt: {
+      created_at: {
         allowNull: false,
         type: DataTypes.DATE,
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: DataTypes.DATE,
       },
-      deletedAt: {
+      deleted_at: {
         allowNull: true,
         type: DataTypes.DATE,
       },
     },
-    { freezeTableName: true }
+    {
+      underscored: true,
+      freezeTableName: true,
+    }
   );
   Profile.associate = function (models) {
-    Profile.belongsTo(models.NotificationPreference, { foreignKey: "notification_preference" });
-    Profile.belongsTo(models.User, { foreignKey: "user" });
+    Profile.belongsTo(models.NotificationPreference, {
+      foreignKey: "notification_preference_id",
+      as: "notification_preference",
+    });
+    Profile.belongsTo(models.User, { foreignKey: "user_id", as: "user_profile" });
   };
   return Profile;
 };

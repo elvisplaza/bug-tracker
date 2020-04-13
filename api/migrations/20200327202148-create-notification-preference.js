@@ -7,36 +7,36 @@ module.exports = {
         id: {
           type: Sequelize.UUID,
           defaultValue: Sequelize.UUIDV1,
-          primaryKey: true
+          primaryKey: true,
         },
         marketing: {
           type: Sequelize.BOOLEAN,
-          defaultValue: true
+          defaultValue: true,
         },
         project: {
           type: Sequelize.BOOLEAN,
-          defaultValue: true
+          defaultValue: true,
         },
-        createdAt: {
+        created_at: {
           allowNull: false,
-          type: Sequelize.DATE
+          type: Sequelize.DATE,
         },
-        updatedAt: {
+        updated_at: {
           allowNull: false,
-          type: Sequelize.DATE
+          type: Sequelize.DATE,
         },
-        deletedAt: {
+        deleted_at: {
           allowNull: true,
-          type: Sequelize.DATE
-        }
+          type: Sequelize.DATE,
+        },
       },
       {
-        underscored: true
-        // freezeTableName: true
+        underscored: true,
+        freezeTableName: true,
       }
     );
   },
   down: (queryInterface, Sequelize) => {
     return queryInterface.dropTable("NotificationPreference");
-  }
+  },
 };

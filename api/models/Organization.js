@@ -6,33 +6,34 @@ module.exports = (sequelize, DataTypes) => {
       id: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV1,
-        primaryKey: true
+        primaryKey: true,
       },
       name: {
         type: DataTypes.STRING(200),
         allowNull: false,
-        defaultValue: "Organization Name"
+        defaultValue: "Organization Name",
       },
-      createdAt: {
-        allowNull: false,
-        type: DataTypes.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: DataTypes.DATE
-      },
-      deletedAt: {
+      created_at: {
+        allowNull: true,
         type: DataTypes.DATE,
-        allowNull: true
-      }
+      },
+      updated_at: {
+        allowNull: true,
+        type: DataTypes.DATE,
+      },
+      deleted_at: {
+        type: DataTypes.DATE,
+        allowNull: true,
+      },
     },
     {
-      freezeTableName: true
+      underscored: true,
+      freezeTableName: true,
     }
   );
-  Organization.associate = function(models) {
-    Organization.hasMany(models.User, { foreignKey: "organization" });
-    Organization.hasMany(models.App, { foreignKey: "organization" });
+  Organization.associate = function (models) {
+    Organization.hasMany(models.User, { foreignKey: "organization_id", as: "user_company" });
+    Organization.hasMany(models.App, { foreignKey: "organization_id", as: "organization" });
   };
   return Organization;
 };

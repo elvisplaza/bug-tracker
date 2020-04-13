@@ -38,7 +38,8 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: true,
       },
-      organization: {
+
+      organization_id: {
         type: DataTypes.UUID,
         references: {
           model: "Organization",
@@ -47,33 +48,17 @@ module.exports = (sequelize, DataTypes) => {
         onUpdate: "CASCADE",
         onDelete: "SET NULL",
       },
-      bugs: {
-        type: DataTypes.UUID,
-        references: {
-          model: "Bug",
-          key: "id",
-        },
-      },
-      createdAt: {
-        allowNull: false,
-        type: DataTypes.DATE,
-      },
-      updatedAt: {
-        allowNull: false,
-        type: DataTypes.DATE,
-      },
-      // deletedAt: {
-      //   allowNull: true,
-      //   type: DataTypes.DATE,
-      // },
     },
 
-    { freezeTableName: true }
+    {
+      freezeTableName: true,
+      underscored: true,
+    }
   );
   App.associate = function (models) {
     // associations can be defined here
-    App.belongsTo(models.Organization, { foreignKey: "organization" });
-    App.hasMany(models.Bug, { foreignKey: "bugs" });
+    App.belongsTo(models.Organization, { foreignKey: "organization_id", as: "organization" });
+    App.hasMany(models.Bug, { foreignKey: "app_id", as: "app_bugs" });
   };
   return App;
 };

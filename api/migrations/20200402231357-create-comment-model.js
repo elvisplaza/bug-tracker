@@ -5,31 +5,31 @@ module.exports = {
       id: {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV1,
-        primaryKey: true
+        primaryKey: true,
       },
       like: {
         type: Sequelize.BOOLEAN,
-        defaultValue: false
+        defaultValue: false,
       },
       description: {
         type: Sequelize.STRING,
-        allowNull: false
-      },
-      createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
       },
-      updatedAt: {
-        allowNull: true,
-        type: Sequelize.DATE
-      },
-      deletedAt: {
+      created_at: {
+        allowNull: false,
         type: Sequelize.DATE,
-        allowNull: true
-      }
+      },
+      updated_at: {
+        allowNull: true,
+        type: Sequelize.DATE,
+      },
+      deleted_at: {
+        type: Sequelize.DATE,
+        allowNull: true,
+      },
     });
   },
   down: (queryInterface, Sequelize) => {
     return queryInterface.dropTable("Comment");
-  }
+  },
 };

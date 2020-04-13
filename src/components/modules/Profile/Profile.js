@@ -35,12 +35,12 @@ class Profile extends Component {
     return this.setState({
       _user: userInfo,
       _email: userInfo.email,
-      _age: userInfo.Profile.age,
+      _age: userInfo.user_profile.age,
       _isAdmin: userInfo.is_admin,
-      _organization: userInfo.Organization.name,
-      _firstName: userInfo.Profile.first_name,
-      _lastName: userInfo.Profile.last_name,
-      _displayName: userInfo.Profile.display_name,
+      _organization: userInfo.user_company.name,
+      _firstName: userInfo.user_profile.first_name,
+      _lastName: userInfo.user_profile.last_name,
+      _displayName: userInfo.user_profile.display_name,
       _phoneNumber: userInfo.phone_number,
     });
   };
@@ -60,7 +60,7 @@ class Profile extends Component {
 
   onSaveChanges = async (e) => {
     e.preventDefault();
-    const { id: profileId } = this.state._user.Profile;
+    const { id: profileId } = this.state._user.user_profile;
     try {
       const { data: profileUpdate } = profileAPI.onUpdateProfileById({ body: this.state, profileId });
 
