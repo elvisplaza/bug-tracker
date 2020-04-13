@@ -15,7 +15,7 @@ const NavBar = (props) => {
   TODO: return (
     <section className={s.nav_bar}>
       <h2 className={s.nav_bar_title}>
-        <a href='/home/af2be130-7840-11ea-8045-010dc24b6a44'>Buginator</a>
+        <a href='/home/91cba000-7d9d-11ea-9af7-6b43b194c2c2'>Buginator</a>
       </h2>
       <div className={s.nav_bar_user_info_container}>
         <img
@@ -28,7 +28,7 @@ const NavBar = (props) => {
         {_isShowModal && (
           <div className={s.nav_bar_profile_container}>
             <h2>Organization</h2>
-            <a href={"/profile/af2be130-7840-11ea-8045-010dc24b6a44"}>Edit Profile</a>
+            <a href={"/profile/91cba000-7d9d-11ea-9af7-6b43b194c2c2"}>Edit Profile</a>
             <p></p>
           </div>
         )}
