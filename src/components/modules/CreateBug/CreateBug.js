@@ -8,8 +8,8 @@ import * as bugAPI from "./../../../helpers/apiHelpers/bug";
 // components
 import { Button } from "./../../ui/";
 class CreateBug extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       _title: "",
       _riskLevel: "",
@@ -18,7 +18,14 @@ class CreateBug extends Component {
       _expectedResult: "",
       _actualOutcome: "",
       _stepsToFix: "",
+      appId: "",
     };
+  }
+  componentDidMount() {
+    console.log(this.props);
+    return this.setState({
+      appId: this.props.applicationId,
+    });
   }
   onHandleChange = (e) => {
     const { id, value } = e.target;
@@ -30,6 +37,7 @@ class CreateBug extends Component {
 
   onCreateBug = async (e) => {
     e.preventDefault();
+    console.log(this.state.appId);
     try {
       const { data: newBug } = await bugAPI.onCreateBug({ body: this.state });
       console.log("newbug created!", newBug);
