@@ -33,7 +33,7 @@ module.exports = (sequelize, DataTypes) => {
   );
   Organization.associate = function (models) {
     Organization.hasMany(models.User, { foreignKey: "organization_id", as: "user_company" });
-    Organization.hasMany(models.App, { foreignKey: "organization_id", as: "application" });
+    Organization.hasMany(models.App, { foreignKey: "organization_id", as: "organization" });
   };
   return Organization;
 };

@@ -1,5 +1,7 @@
 const App = require("./../../models").App;
 const Bug = require("./../../models").Bug;
+const Organization = require("./../../models").Organization;
+
 const createApp = async (req, res) => {
   const {
     _name,
@@ -21,7 +23,7 @@ const createApp = async (req, res) => {
       last_updated: _lastUpdated,
       description: _description,
       website_url: _websiteUrl,
-      organization: _organizationId,
+      organization_id: _organizationId,
     });
 
     return res.status(200).send({ data: newApp });
