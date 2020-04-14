@@ -4,10 +4,42 @@
   height: 100vh;
   color: #4a4a4a;
 }
-input {
-  border-color: #4a4a4a;
-  padding: 10px;
+textarea {
+  border: 2px solid #4a4a4a;
+  border-radius: 5px;
+  padding: 5px 5px;
+  margin-bottom: 15px;
+  min-width: 150px;
+  resize: none;
 }
+textarea::placeholder {
+  font-size: 12px;
+}
+textarea:focus {
+  border-color: lightseagreen;
+}
+input {
+  border-radius: 5px;
+  padding: 5px 5px;
+  margin-bottom: 15px;
+  min-width: 150px;
+  border: none;
+  padding: 10px;
+  color: #4a4a4a;
+  border: 2px solid #4a4a4a;
+}
+
+input,
+textarea,
+select,
+option,
+textarea {
+  outline: none;
+}
+input:focus {
+  border-color: lightseagreen;
+}
+
 a:visited {
   color: #4a4a4a;
 }

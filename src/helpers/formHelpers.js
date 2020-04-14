@@ -15,3 +15,12 @@ export const riskLevels = [
     color: "gray",
   },
 ];
+
+export const numbersToN = (num) => {
+  let numArray = [];
+  for (let i = 1; i < num + 1; i++) {
+    numArray = [...numArray, i];
+  }
+
+  return numArray;
+};
