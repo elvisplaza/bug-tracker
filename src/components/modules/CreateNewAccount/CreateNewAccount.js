@@ -148,6 +148,9 @@ class CreateNewAccount extends Component {
               Create Account
             </Button>
           </form>
+          <a href='/' className={s.create_new_account_link}>
+            Login in
+          </a>
         </div>
       </section>
     );
