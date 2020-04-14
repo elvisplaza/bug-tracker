@@ -1,0 +1,17 @@
+.notification_bubble {
+  margin: 10px 0;
+  padding: 8px;
+  border-radius: 5px;
+  background-color: red;
+  color: white;
+  font-weight: 700;
+  font-size: 14px;
+  max-width: 300px;
+  cursor: pointer;
+  position: relative;
+}
+.notification_icon {
+  position: absolute;
+  right: 7px;
+  top: 4px;
+}
