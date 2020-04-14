@@ -9,7 +9,7 @@ const createUser = async (req, res) => {
   const { _phoneNumber, _email, _isAdmin, _organizationName, _password } = req.body;
 
   try {
-    const newUser = await Organization.create(
+    await Organization.create(
       {
         name: _organizationName,
         user_company: {
@@ -60,7 +60,7 @@ const createUser = async (req, res) => {
         ],
       }
     );
-    return res.status(204).send({ data: newUser });
+    return res.status(204).end();
   } catch (err) {
     throw err;
   }

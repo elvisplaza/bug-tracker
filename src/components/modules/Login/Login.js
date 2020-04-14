@@ -14,6 +14,7 @@ class Login extends Component {
     this.state = {
       _email: "",
       _password: "",
+      _error: "",
     };
   }
 
@@ -29,26 +30,34 @@ class Login extends Component {
   onHandleSubmit = async (e) => {
     e.preventDefault();
     const { _email, _password } = this.state;
-    console.log(stringify({ email: "haha", password: "haha" }));
+    const body = {
+      email: _email,
+      password: _password,
+    };
+
     try {
       const {
         data: [token, user],
-      } = await userAPI.onGetUser({ email: _email, password: _password });
-      setToken(token);
+      } = await userAPI.onLogin({ body });
+      // setToken(token);
       console.log("user info", user);
-      history.push(`/home/${user.id}`);
-      document.location.reload();
+      // history.push(`/home/${user.id}`);
+      // document.location.reload();
     } catch (err) {
-      console.log(err);
+      const { error } = err.response.data;
+
+      this.setState({ _error: error });
+      // error.response.data.message,
     }
   };
   render() {
-    const { _password, _email } = this.state;
+    const { _password, _email, _error } = this.state;
     return (
       <section className={s.login}>
         <h1>Bug Tracker</h1>
         <div>
-          <form onSubmit={this.onHandleSubmit}>
+          {_error}
+          <form className={s.login_form} onSubmit={this.onHandleSubmit}>
             <label htmlFor='_email'>
               <input
                 type='text'

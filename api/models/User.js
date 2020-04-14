@@ -1,4 +1,7 @@
 "use strict";
+const { hashPassword } = require("./../utils/passwordService");
+const bcrypt = require("bcryptjs");
+
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define(
     "User",
@@ -12,7 +15,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-
       is_email_valid: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
@@ -55,9 +57,19 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.DATE,
       },
     },
+
     {
       underscored: true,
       freezeTableName: true,
+      hooks: {
+        beforeCreate: async (user, options) => {
+          try {
+            user.password = await hashPassword(user.password, 10);
+          } catch (err) {
+            throw err;
+          }
+        },
+      },
     }
   );
   User.associate = function (models) {
