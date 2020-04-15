@@ -6,23 +6,17 @@ import s from "./NavBar.module.css";
 import userIcon from "./user-icon.jpg";
 
 //context
-import UserInfoProvider from "../../../context/UserInfoContext";
+import UserInfoContext from "../../../context/UserInfoContext";
 
 const NavBar = (props) => {
   const [_isShowModal, setIsShowModal] = useState(false);
-  const [_userId, setUserId] = useState("");
   // ================== end of state =======================
-  const user = useContext(UserInfoProvider);
+  const user = useContext(UserInfoContext);
   const onShowModal = (e) => setIsShowModal((prevIsShowModal) => !prevIsShowModal);
-
-  useEffect(() => {
-    setUserId(user.userId);
-  });
-  // make sure to add contextAPI to pass around userId
-  TODO: return (
+  return (
     <section className={s.nav_bar}>
       <h2 className={s.nav_bar_title}>
-        <a href={`/home/${_userId}`}>Buginator</a>
+        <a href={`/home/${user.userId}`}>Buginator</a>
       </h2>
       <div className={s.nav_bar_user_info_container}>
         <img
@@ -35,7 +29,7 @@ const NavBar = (props) => {
         {_isShowModal && (
           <div className={s.nav_bar_profile_container}>
             <h2>Organization</h2>
-            <a href={`/profile/${_userId}`}>Edit Profile</a>
+            <a href={`/profile/${user.userId}`}>Edit Profile</a>
             <p></p>
           </div>
         )}
