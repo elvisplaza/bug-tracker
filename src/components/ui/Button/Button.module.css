@@ -9,6 +9,9 @@
   font-weight: 800;
   /* margin-bottom: 15px; */
 }
+.button_default_styles:hover {
+  opacity: 0.8;
+}
 
 .disabled {
   cursor: not-allowed;
@@ -16,4 +19,8 @@
 
 .green {
   background: green;
+}
+
+.full_width {
+  width: 100%;
 }

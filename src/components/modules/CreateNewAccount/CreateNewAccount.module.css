@@ -1,4 +1,43 @@
+.create_new_account {
+  /* height: 100%; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transform: translateY(-10%);
+}
+.form_container {
+  width: 300px;
+  border-radius: 5px;
+  background: white;
+  padding: 20px;
+  box-shadow: 5px 5px 16px rgba(0, 0, 0, 0.1), 0 5px 8px rgba(0, 0, 0, 0.1);
+}
 .create_new_account_form {
   display: flex;
   flex-direction: column;
+}
+.create_new_account_input {
+  width: 100%;
+}
+
+.display_flex {
+  display: flex;
+  flex-direction: row;
+  /* padding-left: 20px; */
+  margin-top: 10px;
+}
+.create_new_account_label {
+  text-align: left;
+}
+.create_new_account_input__small {
+  min-width: 50px;
+}
+.create_new_account_select {
+  margin-left: 10px;
+}
+.create_new_account_link {
+  text-align: left;
+  display: block;
+  margin-top: 20px;
+  font-size: 12px;
 }

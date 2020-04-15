@@ -6,6 +6,9 @@ import * as userAPI from "./../../../helpers/apiHelpers/user";
 
 // helpers
 import history from "./../../../helpers/history";
+import { numbersToN } from "./../../../helpers/formHelpers";
+// components
+import { Button } from "./../../ui/";
 
 class CreateNewAccount extends Component {
   constructor(props) {
@@ -56,11 +59,12 @@ class CreateNewAccount extends Component {
     } = this.state;
     return (
       <section className={s.create_new_account}>
-        <div>
-          <h2>New Account</h2>
+        <h2>New Account</h2>
+        <div className={s.form_container}>
           <form onSubmit={this.onHandleSubmit} className={s.create_new_account_form}>
             <label htmlFor='_email'>
               <input
+                className={s.create_new_account_input}
                 type='email'
                 value={_email}
                 placeholder='email address'
@@ -71,6 +75,7 @@ class CreateNewAccount extends Component {
             </label>
             <label htmlFor='_password'>
               <input
+                className={s.create_new_account_input}
                 type='password'
                 placeholder='password'
                 id='_password'
@@ -81,6 +86,7 @@ class CreateNewAccount extends Component {
             </label>
             <label htmlFor='_comparePassword'>
               <input
+                className={s.create_new_account_input}
                 type='password'
                 placeholder='re-type your password'
                 id='_comparePassword'
@@ -91,6 +97,7 @@ class CreateNewAccount extends Component {
             </label>
             <label htmlFor='_phoneNumber'>
               <input
+                className={s.create_new_account_input}
                 type='phone'
                 value={_phoneNumber}
                 placeholder='Enter your phone number'
@@ -101,6 +108,7 @@ class CreateNewAccount extends Component {
             </label>
             <label htmlFor='_organizationName'>
               <input
+                className={s.create_new_account_input}
                 type='text'
                 placeholder='organization name'
                 id='_organizationName'
@@ -109,19 +117,23 @@ class CreateNewAccount extends Component {
                 onBlur={this.onHandleValidate}
               />
             </label>
-            <label htmlFor='_organizationSize'>
-              <input
+            <label htmlFor='_organizationSize' className={s.create_new_account_label}>
+              How many employees for your Company?
+              <select
+                className={s.create_new_account_select}
                 type='text'
-                placeholder='organization size'
                 id='_organizationSize'
                 value={_organizationSize}
-                onChange={this.onHandleChange}
-                onBlur={this.onHandleValidate}
-              />
+                onChange={this.onHandleChange}>
+                {numbersToN(20).map((number) => {
+                  return <option value={number}>{number}</option>;
+                })}
+              </select>
             </label>
-            <label htmlFor='_isAdmin'>
-              are you the admin of this organization?
+            <label htmlFor='_isAdmin' className={s.display_flex}>
+              Are you the admin of this organization?
               <input
+                className={s.create_new_account_input__small}
                 type='checkbox'
                 value={_isAdmin}
                 onChange={(e) => {
@@ -132,8 +144,13 @@ class CreateNewAccount extends Component {
                 id='_isAdmin'
               />
             </label>
-            <button type='submit'>Create Account</button>
+            <Button green fullWidth type='submit'>
+              Create Account
+            </Button>
           </form>
+          <a href='/' className={s.create_new_account_link}>
+            Login in
+          </a>
         </div>
       </section>
     );

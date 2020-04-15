@@ -12,6 +12,7 @@ const { router: appRoutes } = require("./routes/app/appRoute");
 const { router: profileRoutes } = require("./routes/profile/profileRoute");
 const { router: notificationPreferenceRoutes } = require("./routes/notificationPreference/notificationPreferenceRoute");
 const { router: bugRoutes } = require("./routes/bug/bugRoute");
+const { router: accountRoutes } = require("./routes/account/accountRoute");
 // constants
 const { URL, PORT } = require("./constants");
 
@@ -31,6 +32,7 @@ app.use("/app", appRoutes);
 app.use("/profile", profileRoutes);
 app.use("/app", notificationPreferenceRoutes);
 app.use("/bug", bugRoutes);
+app.use("/account", accountRoutes);
 
 // create a server
 const server = http.createServer(app);
