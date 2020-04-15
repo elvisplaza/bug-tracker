@@ -13,10 +13,11 @@ const NavBar = (props) => {
   // ================== end of state =======================
   const user = useContext(UserInfoContext);
   const onShowModal = (e) => setIsShowModal((prevIsShowModal) => !prevIsShowModal);
+
   return (
     <section className={s.nav_bar}>
       <h2 className={s.nav_bar_title}>
-        <a href={`/home/${user.userId}`}>Buginator</a>
+        <a href={`/home/${user.id}`}>Buginator</a>
       </h2>
       <div className={s.nav_bar_user_info_container}>
         <img
@@ -29,7 +30,7 @@ const NavBar = (props) => {
         {_isShowModal && (
           <div className={s.nav_bar_profile_container}>
             <h2>Organization</h2>
-            <a href={`/profile/${user.userId}`}>Edit Profile</a>
+            <a href={`/profile/${user.id}`}>Edit Profile</a>
             <p></p>
           </div>
         )}
