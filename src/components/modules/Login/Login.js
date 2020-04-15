@@ -43,10 +43,11 @@ class Login extends Component {
       const {
         data: [token, user],
       } = await userAPI.onLogin({ body });
-      // setToken(token);
+      console.log(token, "token!!!");
+      setToken(token);
       console.log("user info", user);
-      // history.push(`/home/${user.id}`);
-      // document.location.reload();
+      history.push(`/home/${user.id}`);
+      document.location.reload();
     } catch (err) {
       const { error } = err.response.data;
       console.log(error);
