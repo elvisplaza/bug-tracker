@@ -1,6 +1,8 @@
 const App = require("./../../models").App;
 const Bug = require("./../../models").Bug;
+const User = require("./../../models").User;
 const Organization = require("./../../models").Organization;
+const UserApp = require("./../../models").UserApp;
 
 const createApp = async (req, res) => {
   const {
@@ -24,6 +26,21 @@ const createApp = async (req, res) => {
       description: _description,
       website_url: _websiteUrl,
       organization_id: _organizationId,
+      // user_id: "338bdcf1-7e7c-11ea-90ac-f11f3c2c64e1",
+    }).then(async (app) => {
+      await UserApp.create({
+        user_id: "338bdcf1-7e7c-11ea-90ac-f11f3c2c64e1",
+        app_id: app.id,
+      });
+      // .then(async (userApp) => {
+      //   console.log(userApp.id, "userApp id ***");
+      //   const user = await User.findByPk(userApp.user_id);
+      //   const app = await App.findByPk(userApp.app_id);
+      //   user.user_app_id = userApp.id;
+      //   app.user_app_id = userApp.id;
+      //   user.save();
+      //   app.save();
+      // });
     });
 
     return res.status(200).send({ data: newApp });
@@ -42,6 +59,10 @@ const getAppById = async (req, res) => {
         {
           model: Bug,
           as: "app_bugs",
+        },
+        {
+          model: User,
+          as: "app_users",
         },
       ],
     });

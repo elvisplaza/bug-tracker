@@ -48,6 +48,15 @@ module.exports = (sequelize, DataTypes) => {
         onUpdate: "CASCADE",
         onDelete: "SET NULL",
       },
+      // user_app_id: {
+      //   type: DataTypes.UUID,
+      //   references: {
+      //     model: "UserApp",
+      //     key: "id",
+      //   },
+      //   onUpdate: "CASCADE",
+      //   onDelete: "SET NULL",
+      // },
     },
 
     {
@@ -59,6 +68,7 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
     App.belongsTo(models.Organization, { foreignKey: "organization_id", as: "organization" });
     App.hasMany(models.Bug, { foreignKey: "app_id", as: "app_bugs" });
+    App.belongsToMany(models.User, { through: models.UserApp, as: "app_users", foreignKey: "app_id" });
   };
   return App;
 };
