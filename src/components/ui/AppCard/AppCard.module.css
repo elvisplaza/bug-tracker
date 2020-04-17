@@ -2,14 +2,12 @@
   min-width: 300px;
   min-height: 150px;
   border: 2px solid #747474;
-  width: calc((100% - 45px) / 5);
+  width: calc((100% / 4) - 20px);
   margin-bottom: 20px;
-  margin-right: 15px;
+  margin-right: 20px;
   cursor: pointer;
 }
-.app_card:nth-child(5n) {
-  margin-right: 0;
-}
+
 .app_card:hover {
   border-color: lightseagreen;
 }

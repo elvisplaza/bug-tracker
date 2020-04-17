@@ -3,6 +3,7 @@
   flex-direction: column;
   width: 100%;
   padding: 20px;
+  padding-right: 0;
 }
 
 .home_search_bar_container {
@@ -21,6 +22,8 @@
   flex-direction: row;
   justify-content: flex-start;
   flex-wrap: wrap;
+  height: 100%;
+  overflow-y: scroll;
 }
 /* //TODO: add to common css */
 

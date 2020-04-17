@@ -10,6 +10,6 @@ router
   .post(createUser);
 
 // /user/:userId
-router.route("/:userId").get(getOneUser);
+router.route("/app/:userId").get(getOneUser);
 
 exports.router = router;

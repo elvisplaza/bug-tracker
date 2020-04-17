@@ -9,6 +9,7 @@ import { CreateNewApp } from "./../../modules/";
 
 // helpers
 import * as appAPI from "./../../../helpers/apiHelpers/app";
+import * as userAPI from "./../../../helpers/apiHelpers/user";
 
 class Home extends Component {
   constructor(props) {
@@ -16,19 +17,20 @@ class Home extends Component {
     this.state = {
       _isShowCreateAppModal: false,
       _query: "",
-      _orgId: "338bdcf0-7e7c-11ea-90ac-f11f3c2c64e1",
       _apps: [],
+      userId: "",
     };
   }
   componentDidMount() {
-    this.onGetAllApps();
+    const { userId } = this.props.match.params;
+
+    this.onGetAllApps(userId);
   }
-  onGetAllApps = async () => {
-    const { _orgId } = this.state;
-    console.log(_orgId, "i'm getting apps!");
-    const { data: apps } = await appAPI.onGetAllAppsByOrgId({ orgId: _orgId });
+  onGetAllApps = async (userId) => {
+    const { data: userInfo } = await userAPI.onGetUserById({ id: userId });
+    console.log(userInfo);
     return this.setState({
-      _apps: apps,
+      _apps: userInfo.company_apps,
     });
   };
   onHandleChange = (e) => {
