@@ -1,7 +1,7 @@
 const App = require("./../../models").App;
 const Bug = require("./../../models").Bug;
 const User = require("./../../models").User;
-const Organization = require("./../../models").Organization;
+const Profile = require("./../../models").Profile;
 const UserApp = require("./../../models").UserApp;
 
 const createApp = async (req, res) => {
@@ -62,6 +62,12 @@ const getAppById = async (req, res) => {
         {
           model: User,
           as: "app_users",
+          include: [
+            {
+              model: Profile,
+              as: "user_profile",
+            },
+          ],
         },
       ],
     });

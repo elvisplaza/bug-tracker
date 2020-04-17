@@ -22,7 +22,6 @@ class CreateBug extends Component {
     };
   }
   componentDidMount() {
-    console.log(this.props);
     return this.setState({
       appId: this.props.applicationId,
     });
