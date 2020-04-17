@@ -1,6 +1,5 @@
 "use strict";
 const { hashPassword } = require("./../utils/passwordService");
-const bcrypt = require("bcryptjs");
 
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define(
@@ -44,6 +43,15 @@ module.exports = (sequelize, DataTypes) => {
           key: "id",
         },
       },
+      // user_app_id: {
+      //   type: DataTypes.UUID,
+      //   references: {
+      //     model: "UserApp",
+      //     key: "id",
+      //   },
+      //   onUpdate: "CASCADE",
+      //   onDelete: "SET NULL",
+      // },
       created_at: {
         allowNull: false,
         type: DataTypes.DATE,
@@ -75,6 +83,7 @@ module.exports = (sequelize, DataTypes) => {
   User.associate = function (models) {
     User.belongsTo(models.Organization, { foreignKey: "organization_id", as: "user_company" });
     User.hasOne(models.Profile, { foreignKey: "user_id", as: "user_profile" });
+    User.belongsToMany(models.App, { through: models.UserApp, as: "company_apps", foreignKey: "user_id" });
   };
   return User;
 };

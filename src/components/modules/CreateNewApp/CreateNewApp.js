@@ -21,7 +21,7 @@ class CreateNewApp extends Component {
       _description: "",
       _websiteUrl: "",
       // TODO: GET CONTEXT!
-      _organizationId: "91cb78f0-7d9d-11ea-9af7-6b43b194c2c2",
+      _organizationId: "338bdcf0-7e7c-11ea-90ac-f11f3c2c64e1",
     };
   }
   onHandleChange = (e) => {
@@ -36,7 +36,7 @@ class CreateNewApp extends Component {
     try {
       const { data: newApp } = await appAPI.onCreateApp({ body: this.state });
       history.push(`/app/${newApp.id}`);
-      document.location.reload();
+      // document.location.reload();
     } catch (err) {
       console.log(err);
     }
