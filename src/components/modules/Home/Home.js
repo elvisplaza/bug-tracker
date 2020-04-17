@@ -9,6 +9,7 @@ import { CreateNewApp } from "./../../modules/";
 
 // helpers
 import * as appAPI from "./../../../helpers/apiHelpers/app";
+import * as userAPI from "./../../../helpers/apiHelpers/user";
 
 class Home extends Component {
   constructor(props) {
@@ -16,19 +17,23 @@ class Home extends Component {
     this.state = {
       _isShowCreateAppModal: false,
       _query: "",
-      _orgId: "338bdcf0-7e7c-11ea-90ac-f11f3c2c64e1",
       _apps: [],
+      _userId: "",
+      _orgId: "",
     };
   }
   componentDidMount() {
-    this.onGetAllApps();
+    const { userId } = this.props.match.params;
+    this.onGetAllApps(userId);
   }
-  onGetAllApps = async () => {
-    const { _orgId } = this.state;
-    console.log(_orgId, "i'm getting apps!");
-    const { data: apps } = await appAPI.onGetAllAppsByOrgId({ orgId: _orgId });
+
+  onGetAllApps = async (userId) => {
+    const { data: userInfo } = await userAPI.onGetUserById({ id: userId });
+    console.log(userInfo);
     return this.setState({
-      _apps: apps,
+      _apps: userInfo.company_apps,
+      _userId: userId,
+      _orgId: userInfo.organization_id,
     });
   };
   onHandleChange = (e) => {
@@ -39,13 +44,12 @@ class Home extends Component {
   };
 
   onShowModal = (e) => {
-    console.log(e.target.id);
     return this.setState((prevState) => ({
       _isShowCreateAppModal: !prevState._isShowCreateAppModal,
     }));
   };
   render() {
-    const { _query, _isShowCreateAppModal, _apps } = this.state;
+    const { _query, _isShowCreateAppModal, _apps, _orgId, _userId } = this.state;
     return (
       <section className={s.home}>
         <h2>Apps will be displayed here</h2>
@@ -54,7 +58,7 @@ class Home extends Component {
             <FontAwesomeIcon icon={faPlus} className={s.icon} />
           </ToolTip>
           <ReactModal isOpen={_isShowCreateAppModal} onClose={this.onShowModal}>
-            <CreateNewApp />
+            <CreateNewApp orgId={_orgId} userId={_userId} />
           </ReactModal>
           <form className={s.home_form}>
             <label htmlFor='query'>

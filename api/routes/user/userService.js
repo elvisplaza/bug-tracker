@@ -1,7 +1,9 @@
+// Models
 const Organization = require("./../../models").Organization;
 const User = require("./../../models/").User;
 const Profile = require("./../../models/").Profile;
 const NotificationPreference = require("./../../models/").NotificationPreference;
+const App = require("./../../models/").App;
 // utils
 const tokenService = require("./../../utils/tokenService");
 
@@ -102,6 +104,10 @@ const getOneUser = async (req, res) => {
       {
         model: Profile,
         as: "user_profile",
+      },
+      {
+        model: App,
+        as: "company_apps",
       },
     ],
   });
