@@ -10,8 +10,8 @@ import * as appAPI from "./../../../helpers/apiHelpers/app";
 import history from "./../../../helpers/history";
 
 class CreateNewApp extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       _name: "",
       _clientLanguage: "",
@@ -20,8 +20,8 @@ class CreateNewApp extends Component {
       _lastUpdated: new Date(),
       _description: "",
       _websiteUrl: "",
-      // TODO: GET CONTEXT!
-      _organizationId: "338bdcf0-7e7c-11ea-90ac-f11f3c2c64e1",
+      _orgId: this.props.orgId,
+      _userId: this.props.userId,
     };
   }
   onHandleChange = (e) => {
@@ -36,21 +36,13 @@ class CreateNewApp extends Component {
     try {
       const { data: newApp } = await appAPI.onCreateApp({ body: this.state });
       history.push(`/app/${newApp.id}`);
-      // document.location.reload();
+      document.location.reload();
     } catch (err) {
       console.log(err);
     }
   };
   render() {
-    const {
-      _name,
-      _description,
-      _clientLanguage,
-      _serverLanguage,
-      _databaseType,
-
-      _websiteUrl,
-    } = this.state;
+    const { _name, _description, _clientLanguage, _serverLanguage, _databaseType, _websiteUrl } = this.state;
     return (
       <section className={s.create_new_app}>
         <h2 className={s.create_new_app_title}>New App</h2>

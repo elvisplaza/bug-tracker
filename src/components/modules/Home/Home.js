@@ -18,19 +18,22 @@ class Home extends Component {
       _isShowCreateAppModal: false,
       _query: "",
       _apps: [],
-      userId: "",
+      _userId: "",
+      _orgId: "",
     };
   }
   componentDidMount() {
     const { userId } = this.props.match.params;
-
     this.onGetAllApps(userId);
   }
+
   onGetAllApps = async (userId) => {
     const { data: userInfo } = await userAPI.onGetUserById({ id: userId });
     console.log(userInfo);
     return this.setState({
       _apps: userInfo.company_apps,
+      _userId: userId,
+      _orgId: userInfo.organization_id,
     });
   };
   onHandleChange = (e) => {
@@ -41,13 +44,12 @@ class Home extends Component {
   };
 
   onShowModal = (e) => {
-    console.log(e.target.id);
     return this.setState((prevState) => ({
       _isShowCreateAppModal: !prevState._isShowCreateAppModal,
     }));
   };
   render() {
-    const { _query, _isShowCreateAppModal, _apps } = this.state;
+    const { _query, _isShowCreateAppModal, _apps, _orgId, _userId } = this.state;
     return (
       <section className={s.home}>
         <h2>Apps will be displayed here</h2>
@@ -56,7 +58,7 @@ class Home extends Component {
             <FontAwesomeIcon icon={faPlus} className={s.icon} />
           </ToolTip>
           <ReactModal isOpen={_isShowCreateAppModal} onClose={this.onShowModal}>
-            <CreateNewApp />
+            <CreateNewApp orgId={_orgId} userId={_userId} />
           </ReactModal>
           <form className={s.home_form}>
             <label htmlFor='query'>

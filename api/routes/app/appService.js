@@ -13,9 +13,9 @@ const createApp = async (req, res) => {
     _lastUpdated,
     _description,
     _websiteUrl,
-    _organizationId,
+    _orgId,
+    _userId,
   } = req.body;
-
   try {
     const newApp = await App.create({
       name: _name,
@@ -25,11 +25,10 @@ const createApp = async (req, res) => {
       last_updated: _lastUpdated,
       description: _description,
       website_url: _websiteUrl,
-      organization_id: _organizationId,
-      // user_id: "338bdcf1-7e7c-11ea-90ac-f11f3c2c64e1",
+      organization_id: _orgId,
     }).then(async (app) => {
       await UserApp.create({
-        user_id: "338bdcf1-7e7c-11ea-90ac-f11f3c2c64e1",
+        user_id: _userId,
         app_id: app.id,
       });
       // .then(async (userApp) => {
