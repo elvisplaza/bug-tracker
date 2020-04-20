@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import s from "./SearchBar.module.css";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 // helpers
 import history from "./../../../helpers/history";
 import querystring from "querystring";
@@ -15,9 +16,7 @@ class SearchBar extends Component {
       _results: [],
     };
   }
-  componentDidMount() {
-    console.log("history", history);
-  }
+
   onHandleChange = (e) => {
     const { value, id } = e.target;
     const { userId } = this.props;
@@ -67,7 +66,14 @@ class SearchBar extends Component {
           <ul className={s.results_container}>
             {_results.length > 0
               ? _results.map((app) => {
-                  return <li className={s.results_li}>app name: {app.name}</li>;
+                  return (
+                    <a href={`/app/${app.id}`}>
+                      <li className={s.results_li}>
+                        <FontAwesomeIcon icon={faSearch} className={s.search_icon} />
+                        Application name: {app.name}
+                      </li>
+                    </a>
+                  );
                 })
               : null}
           </ul>

@@ -28,6 +28,10 @@ input {
   padding: 5px 10px;
   cursor: pointer;
   border-radius: 5px;
+  font-size: 12px;
+}
+.search_icon {
+  margin-right: 5px;
 }
 .results_li:hover {
   color: white;

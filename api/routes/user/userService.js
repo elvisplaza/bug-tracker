@@ -7,6 +7,9 @@ const NotificationPreference = require("./../../models/").NotificationPreference
 const App = require("./../../models/").App;
 // utils
 const tokenService = require("./../../utils/tokenService");
+
+const { Op } = require("sequelize");
+
 const createUser = async (req, res) => {
   const { _phoneNumber, _email, _isAdmin, _organizationName, _password } = req.body;
 
@@ -127,12 +130,11 @@ const getUserApps = async (req, res) => {
         model: App,
         as: "company_apps",
         where: {
-          name,
+          name: { [Op.iLike]: `%${name}%` },
         },
       },
     ],
   });
-  console.log(apps[0].company_apps, "apps ***");
   return res.status(200).send({ data: apps[0].company_apps });
 };
 module.exports = {
