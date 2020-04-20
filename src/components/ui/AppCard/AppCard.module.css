@@ -6,6 +6,8 @@
   margin-bottom: 20px;
   margin-right: 20px;
   cursor: pointer;
+  background: white;
+  box-shadow: 5px 5px 16px rgba(0, 0, 0, 0.1), 0 5px 8px rgba(0, 0, 0, 0.1);
 }
 
 .app_card:hover {

@@ -5,7 +5,7 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 // components
 import { ToolTip, ReactModal, AppCard } from "./../../ui/";
-import { CreateNewApp } from "./../../modules/";
+import { CreateNewApp, SearchBar } from "./../../modules/";
 
 // helpers
 import * as appAPI from "./../../../helpers/apiHelpers/app";
@@ -36,12 +36,6 @@ class Home extends Component {
       _orgId: userInfo.organization_id,
     });
   };
-  onHandleChange = (e) => {
-    const { value, id } = e.target;
-    return this.setState({
-      [id]: value,
-    });
-  };
 
   onShowModal = (e) => {
     return this.setState((prevState) => ({
@@ -49,7 +43,7 @@ class Home extends Component {
     }));
   };
   render() {
-    const { _query, _isShowCreateAppModal, _apps, _orgId, _userId } = this.state;
+    const { _isShowCreateAppModal, _apps, _orgId, _userId } = this.state;
     return (
       <section className={s.home}>
         <h2>Apps will be displayed here</h2>
@@ -60,17 +54,7 @@ class Home extends Component {
           <ReactModal isOpen={_isShowCreateAppModal} onClose={this.onShowModal}>
             <CreateNewApp orgId={_orgId} userId={_userId} />
           </ReactModal>
-          <form className={s.home_form}>
-            <label htmlFor='query'>
-              <input
-                type='text'
-                id='_query'
-                value={_query}
-                onChange={this.onHandleChange}
-                className={s.home_form_input}
-              />
-            </label>
-          </form>
+          <SearchBar userId={_userId} />
         </div>
         <div className={s.home_app_container}>
           {_apps.length > 0

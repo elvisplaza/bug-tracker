@@ -1,5 +1,5 @@
 const express = require("express");
-const { createUser, getUser, getOneUser } = require("./userService");
+const { createUser, getUser, getOneUser, getUserApps } = require("./userService");
 const requireAuth = require("./../../middleware/auth");
 const router = express.Router();
 
@@ -11,5 +11,6 @@ router
 
 // /user/:userId
 router.route("/app/:userId").get(requireAuth, getOneUser);
+router.route("/app/:userId/all").get(requireAuth, getUserApps);
 
 exports.router = router;

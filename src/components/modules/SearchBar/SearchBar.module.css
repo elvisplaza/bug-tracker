@@ -1,0 +1,35 @@
+.search_bar {
+  width: 600px;
+  position: relative;
+}
+
+label,
+input {
+  width: 100%;
+}
+
+.search_bar_result_container {
+  position: absolute;
+  background: white;
+  left: 0;
+  right: 0;
+  top: 40px;
+  border-radius: 5px;
+  box-shadow: 5px 5px 16px rgba(0, 0, 0, 0.1), 0 5px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+}
+
+.results_container {
+  width: 100%;
+}
+.results_li {
+  list-style-type: none;
+  text-align: left;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.results_li:hover {
+  color: white;
+  background: #4a4a4a;
+}

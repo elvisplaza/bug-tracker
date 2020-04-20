@@ -1,12 +1,12 @@
 // Models
 const Organization = require("./../../models").Organization;
 const User = require("./../../models/").User;
+const UserApp = require("./../../models/").UserApp;
 const Profile = require("./../../models/").Profile;
 const NotificationPreference = require("./../../models/").NotificationPreference;
 const App = require("./../../models/").App;
 // utils
 const tokenService = require("./../../utils/tokenService");
-
 const createUser = async (req, res) => {
   const { _phoneNumber, _email, _isAdmin, _organizationName, _password } = req.body;
 
@@ -115,8 +115,29 @@ const getOneUser = async (req, res) => {
   return res.status(200).send({ data: user });
 };
 
+const getUserApps = async (req, res) => {
+  const { userId } = req.params;
+  const { name } = req.query;
+  const apps = await User.findAll({
+    where: {
+      id: userId,
+    },
+    include: [
+      {
+        model: App,
+        as: "company_apps",
+        where: {
+          name,
+        },
+      },
+    ],
+  });
+  console.log(apps[0].company_apps, "apps ***");
+  return res.status(200).send({ data: apps[0].company_apps });
+};
 module.exports = {
   createUser,
   getUser,
   getOneUser,
+  getUserApps,
 };
