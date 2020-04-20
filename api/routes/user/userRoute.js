@@ -1,6 +1,6 @@
 const express = require("express");
 const { createUser, getUser, getOneUser } = require("./userService");
-
+const requireAuth = require("./../../middleware/auth");
 const router = express.Router();
 
 router
@@ -10,6 +10,6 @@ router
   .post(createUser);
 
 // /user/:userId
-router.route("/app/:userId").get(getOneUser);
+router.route("/app/:userId").get(requireAuth, getOneUser);
 
 exports.router = router;

@@ -2,6 +2,7 @@
 const express = require("express");
 const http = require("http");
 const Sequelize = require("sequelize");
+const auth = require("./middleware/auth");
 // utils
 const { applyMiddleware } = require("./utils");
 // middleware
@@ -27,12 +28,13 @@ applyMiddleware(middleware, app);
 
 // routes
 
-app.use("/user", userRoutes);
-app.use("/app", appRoutes);
-app.use("/profile", profileRoutes);
-app.use("/app", notificationPreferenceRoutes);
-app.use("/bug", bugRoutes);
-app.use("/account", accountRoutes);
+// make sure to add auth to every new route you create!
+app.use("/user", auth, userRoutes);
+app.use("/app", auth, appRoutes);
+app.use("/profile", auth, profileRoutes);
+app.use("/app", auth, notificationPreferenceRoutes);
+app.use("/bug", auth, bugRoutes);
+app.use("/account", auth, accountRoutes);
 
 // create a server
 const server = http.createServer(app);
