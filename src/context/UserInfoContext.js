@@ -11,11 +11,14 @@ class UserInfoProvider extends Component {
     userId: {},
   };
   async componentDidMount() {
-    if (!localStorage.id_token) {
+    console.log(TOKEN_LABEL[TOKEN_TYPE.id_token]);
+    if (!localStorage[TOKEN_LABEL[TOKEN_TYPE.id_token]]) {
       return this.setState({ userId: "" });
     }
-    const { id = "" } = await getToken(TOKEN_LABEL[TOKEN_TYPE.id_token]);
-    const userId = jwt.decode(id);
+    const token = await getToken(TOKEN_LABEL[TOKEN_TYPE.id_token]);
+    const {
+      user: { id: userId },
+    } = await jwt.decode(token);
     return this.setState({ userId: userId });
   }
   render() {

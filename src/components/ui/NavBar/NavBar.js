@@ -17,40 +17,42 @@ import history from "./../../../helpers/history";
 import { TOKEN_TYPE, TOKEN_LABEL } from "./../../../constants";
 
 const NavBar = (props) => {
-  const [_isShowModal, setIsShowModal] = useState(false);
+  const [_isShowModal, setIsShowModal] = useState(true);
   // ================== end of state =======================
   const user = useContext(UserInfoContext);
   const onShowModal = (e) => setIsShowModal((prevIsShowModal) => !prevIsShowModal);
   const onHandleLogout = async (e) => {
     await removeToken(TOKEN_LABEL[TOKEN_TYPE.id_token]);
     history.push("/");
-    document.reload();
+    document.location.reload();
   };
   return (
     <section className={s.nav_bar}>
       <h2 className={s.nav_bar_title}>
         <a href={`/home/${user.userId}`}>Buginator</a>
       </h2>
-      <div className={s.nav_bar_user_info_container}>
-        <img
-          src={userIcon}
-          id='userIcon'
-          className={s.nav_bar_user_icon}
-          alt='user generated profile picture or default to a user icon'
-          onClick={onShowModal}
-        />
-        {_isShowModal && (
-          <div className={s.nav_bar_profile_container}>
-            <h2>Organization</h2>
-            <a href={`/profile/${user.userId}`}>Edit Profile</a>
+      {user.userId && (
+        <div className={s.nav_bar_user_info_container}>
+          <img
+            src={userIcon}
+            id='userIcon'
+            className={s.nav_bar_user_icon}
+            alt='user generated profile picture or default to a user icon'
+            onClick={onShowModal}
+          />
+          {_isShowModal && (
+            <div className={s.nav_bar_profile_container}>
+              <h2>Organization</h2>
+              <a href={`/profile/${user.userId}`}>Edit Profile</a>
 
-            <p onClick={onHandleLogout}>
-              <FontAwesomeIcon icon={faSignOutAlt} />
-              Logout
-            </p>
-          </div>
-        )}
-      </div>
+              <p onClick={onHandleLogout} className={s.nav_bar_p}>
+                <FontAwesomeIcon icon={faSignOutAlt} />
+                Logout
+              </p>
+            </div>
+          )}
+        </div>
+      )}
     </section>
   );
 };
