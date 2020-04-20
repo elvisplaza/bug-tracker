@@ -1,12 +1,12 @@
 import axios from "axios";
 import { getToken } from "./../tokenService.js";
-// helpers
-import { stringify } from "./../stringify";
+// constants
+import { TOKEN_TYPE, TOKEN_LABEL } from "./../../constants";
 
 const url = "http://localhost:3001";
 const header = {
   headers: {
-    Authorization: `Bearer ${getToken("id_token")}`,
+    Authorization: `Bearer ${getToken(TOKEN_LABEL[TOKEN_TYPE.id_token])}`,
   },
 };
 export const onCreateProfile = ({ body = {} }) => {

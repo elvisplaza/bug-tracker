@@ -34,7 +34,7 @@ app.use("/app", auth, appRoutes);
 app.use("/profile", auth, profileRoutes);
 app.use("/app", auth, notificationPreferenceRoutes);
 app.use("/bug", auth, bugRoutes);
-app.use("/account", auth, accountRoutes);
+app.use("/account", accountRoutes);
 
 // create a server
 const server = http.createServer(app);

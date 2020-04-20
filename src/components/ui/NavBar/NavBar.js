@@ -1,18 +1,31 @@
 import React, { useState, setState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import s from "./NavBar.module.css";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 // images
 import userIcon from "./user-icon.jpg";
 
 //context
 import UserInfoContext from "../../../context/UserInfoContext";
 
+//helpers
+import { removeToken } from "./../../../helpers/tokenService";
+import history from "./../../../helpers/history";
+
+//constants
+import { TOKEN_TYPE, TOKEN_LABEL } from "./../../../constants";
+
 const NavBar = (props) => {
   const [_isShowModal, setIsShowModal] = useState(false);
   // ================== end of state =======================
   const user = useContext(UserInfoContext);
   const onShowModal = (e) => setIsShowModal((prevIsShowModal) => !prevIsShowModal);
+  const onHandleLogout = async (e) => {
+    await removeToken(TOKEN_LABEL[TOKEN_TYPE.id_token]);
+    history.push("/");
+    document.reload();
+  };
   return (
     <section className={s.nav_bar}>
       <h2 className={s.nav_bar_title}>
@@ -30,7 +43,11 @@ const NavBar = (props) => {
           <div className={s.nav_bar_profile_container}>
             <h2>Organization</h2>
             <a href={`/profile/${user.userId}`}>Edit Profile</a>
-            <p></p>
+
+            <p onClick={onHandleLogout}>
+              <FontAwesomeIcon icon={faSignOutAlt} />
+              Logout
+            </p>
           </div>
         )}
       </div>
