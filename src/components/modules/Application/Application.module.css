@@ -5,6 +5,15 @@
   padding: 20px;
   text-align: left;
 }
+.display_row {
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+  align-items: baseline;
+}
+.container_title {
+  margin-left: 15px;
+}
 .application_title {
   margin: 0;
 }

@@ -91,12 +91,15 @@ class Application extends Component {
           {/* // =============== bug section ============== */}
         </div>
         <div className={s.application_bug_container}>
-          <ReactModal isOpen={_isShowBugModal} onClose={this.onShowModal}>
-            <CreateBug applicationId={appId} />
-          </ReactModal>
-          <ToolTip text='Add Bug' onClick={this.onShowModal} right>
-            <FontAwesomeIcon icon={faPlus} className={s.icon} />
-          </ToolTip>
+          <div className={s.display_row}>
+            <ReactModal isOpen={_isShowBugModal} onClose={this.onShowModal}>
+              <CreateBug applicationId={appId} />
+            </ReactModal>
+            <ToolTip text='Add Bug' onClick={this.onShowModal} right>
+              <FontAwesomeIcon icon={faPlus} className={s.icon} />
+            </ToolTip>
+            <h3 className={s.container_title}>Create Bug</h3>
+          </div>
           <div className={s.bug_container}>
             {_appBugs.length > 0 &&
               _appBugs.map((bug) => {

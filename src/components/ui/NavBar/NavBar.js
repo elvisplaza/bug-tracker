@@ -17,7 +17,7 @@ import history from "./../../../helpers/history";
 import { TOKEN_TYPE, TOKEN_LABEL } from "./../../../constants";
 
 const NavBar = (props) => {
-  const [_isShowModal, setIsShowModal] = useState(true);
+  const [_isShowModal, setIsShowModal] = useState(false);
   // ================== end of state =======================
   const user = useContext(UserInfoContext);
   const onShowModal = (e) => setIsShowModal((prevIsShowModal) => !prevIsShowModal);

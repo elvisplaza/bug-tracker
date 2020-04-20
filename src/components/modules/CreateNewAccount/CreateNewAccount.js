@@ -149,7 +149,7 @@ class CreateNewAccount extends Component {
             </Button>
           </form>
           <a href='/' className={s.create_new_account_link}>
-            Login in
+            Login
           </a>
         </div>
       </section>
