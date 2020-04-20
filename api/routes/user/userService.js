@@ -123,15 +123,15 @@ const getUserApps = async (req, res) => {
   const { name } = req.query;
   const apps = await User.findAll({
     where: {
-      id: userId,
+      [Op.and]: [{ id: userId }, { "$company_apps.name$": { [Op.iLike]: `%${name}%` } }],
     },
     include: [
       {
         model: App,
         as: "company_apps",
-        where: {
-          name: { [Op.iLike]: `%${name}%` },
-        },
+        // where: {
+        //   name: { [Op.iLike]: `%${name}%` },
+        // },
       },
     ],
   });

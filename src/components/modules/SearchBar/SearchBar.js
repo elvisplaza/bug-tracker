@@ -19,7 +19,7 @@ class SearchBar extends Component {
 
   onHandleChange = (e) => {
     const { value, id } = e.target;
-    const { userId } = this.props;
+    const { userId, onDisplayAppsFromQuery } = this.props;
 
     return this.setState(
       {
@@ -30,6 +30,7 @@ class SearchBar extends Component {
           name: value,
         };
         const { data: results } = await userAPI.onGetAllAppByUserId({ queryObj, userId });
+
         return this.setState({
           _results: results,
         });
@@ -62,22 +63,22 @@ class SearchBar extends Component {
             />
           </label>
         </form>
-        <div className={s.search_bar_result_container}>
-          <ul className={s.results_container}>
-            {_results.length > 0
-              ? _results.map((app) => {
-                  return (
-                    <a href={`/app/${app.id}`}>
-                      <li className={s.results_li}>
-                        <FontAwesomeIcon icon={faSearch} className={s.search_icon} />
-                        Application name: {app.name}
-                      </li>
-                    </a>
-                  );
-                })
-              : null}
-          </ul>
-        </div>
+        {_results.length > 0 ? (
+          <div className={s.search_bar_result_container}>
+            <ul className={s.results_container}>
+              {_results.map((app) => {
+                return (
+                  <a href={`/app/${app.id}`} className={s.search_bar_link}>
+                    <li className={s.results_li}>
+                      <FontAwesomeIcon icon={faSearch} className={s.search_icon} />
+                      {app.name}
+                    </li>
+                  </a>
+                );
+              })}
+            </ul>
+          </div>
+        ) : null}
       </section>
     );
   }

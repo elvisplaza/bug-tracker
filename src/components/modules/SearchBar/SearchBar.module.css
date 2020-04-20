@@ -30,6 +30,12 @@ input {
   border-radius: 5px;
   font-size: 12px;
 }
+.search_bar_link {
+  color: #4a4a4a !important;
+}
+.search_bar_link:hover {
+  text-decoration: none;
+}
 .search_icon {
   margin-right: 5px;
 }

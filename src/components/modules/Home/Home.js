@@ -29,7 +29,7 @@ class Home extends Component {
 
   onGetAllApps = async (userId) => {
     const { data: userInfo } = await userAPI.onGetUserById({ id: userId });
-    console.log(userInfo);
+
     return this.setState({
       _apps: userInfo.company_apps,
       _userId: userId,

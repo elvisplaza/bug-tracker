@@ -15,6 +15,7 @@ export const onCreateApp = ({ body }) => {
   return axios
     .post(path, body, header)
     .then((data) => {
+      console.log("data from api helpers for createnewapp", data.data);
       return data.data;
     })
     .catch((err) => {
