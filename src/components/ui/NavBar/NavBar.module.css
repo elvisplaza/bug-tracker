@@ -30,8 +30,17 @@
   left: 106px;
   top: -100px;
   bottom: 0;
-  background: red;
+  background: white;
+  box-shadow: 5px 5px 16px rgba(0, 0, 0, 0.1), 0 5px 8px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   padding: 15px;
   text-align: left;
+}
+
+.nav_bar_p {
+  cursor: pointer;
+}
+.nav_bar_p:hover {
+  color: lightseagreen;
+  text-decoration: underline;
 }

@@ -75,7 +75,7 @@ class Home extends Component {
         <div className={s.home_app_container}>
           {_apps.length > 0
             ? _apps.map((app) => {
-                return <AppCard name={app.name} appId={app.id} />;
+                return <AppCard name={app.name} appId={app.id} key={app.id} />;
               })
             : "you Company does not have any application started :( "}
         </div>
