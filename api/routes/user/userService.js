@@ -11,7 +11,7 @@ const tokenService = require("./../../utils/tokenService");
 const { Op } = require("sequelize");
 
 const createUser = async (req, res) => {
-  const { _phoneNumber, _email, _isAdmin, _organizationName, _password } = req.body;
+  const { _phoneNumber, _email, _isAdmin, _organizationName, r } = req.body;
 
   try {
     await Organization.create(
