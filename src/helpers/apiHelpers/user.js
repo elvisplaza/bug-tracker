@@ -1,7 +1,7 @@
 import axios from "axios";
-
+import querystring from "querystring";
 // helpers
-import { stringify } from "./../stringify";
+
 import { getToken } from "./../tokenService.js";
 // constants
 import { TOKEN_TYPE, TOKEN_LABEL } from "./../../constants";
@@ -27,7 +27,7 @@ export const onCreateUser = ({ body = {} }) => {
 };
 
 export const onGetUser = ({ email = "", password = "" }) => {
-  const path = `${url}/user?${stringify({ email, password })}`;
+  const path = `${url}/user?${querystring.stringify({ email, password })}`;
   return axios
     .get(path, header)
     .then((data) => {
@@ -52,6 +52,20 @@ export const onLogin = ({ body }) => {
   return axios
     .post(path, body)
     .then((data) => {
+      return data.data;
+    })
+    .catch((err) => {
+      throw err;
+    });
+};
+
+export const onGetAllAppByUserId = ({ queryObj, userId }) => {
+  const path = `${url}/user/app/${userId}/all?${querystring.stringify(queryObj)}`;
+  console.log(path);
+  return axios
+    .get(path, header)
+    .then((data) => {
+      console.log("search query results", data.data);
       return data.data;
     })
     .catch((err) => {

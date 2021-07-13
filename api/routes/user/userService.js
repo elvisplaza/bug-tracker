@@ -1,14 +1,17 @@
 // Models
 const Organization = require("./../../models").Organization;
 const User = require("./../../models/").User;
+const UserApp = require("./../../models/").UserApp;
 const Profile = require("./../../models/").Profile;
 const NotificationPreference = require("./../../models/").NotificationPreference;
 const App = require("./../../models/").App;
 // utils
 const tokenService = require("./../../utils/tokenService");
 
+const { Op } = require("sequelize");
+
 const createUser = async (req, res) => {
-  const { _phoneNumber, _email, _isAdmin, _organizationName, _password } = req.body;
+  const { _phoneNumber, _email, _isAdmin, _organizationName, r } = req.body;
 
   try {
     await Organization.create(
@@ -115,8 +118,28 @@ const getOneUser = async (req, res) => {
   return res.status(200).send({ data: user });
 };
 
+const getUserApps = async (req, res) => {
+  const { userId } = req.params;
+  const { name } = req.query;
+  const apps = await User.findAll({
+    where: {
+      [Op.and]: [{ id: userId }, { "$company_apps.name$": { [Op.iLike]: `%${name}%` } }],
+    },
+    include: [
+      {
+        model: App,
+        as: "company_apps",
+        // where: {
+        //   name: { [Op.iLike]: `%${name}%` },
+        // },
+      },
+    ],
+  });
+  return res.status(200).send({ data: apps[0].company_apps });
+};
 module.exports = {
   createUser,
   getUser,
   getOneUser,
+  getUserApps,
 };

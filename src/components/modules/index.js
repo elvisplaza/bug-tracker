@@ -7,3 +7,4 @@ export { default as CreateNewApp } from "./CreateNewApp/CreateNewApp";
 export { default as Application } from "./Application/Application";
 
 export { default as CreateBug } from "./CreateBug/CreateBug";
+export { default as SearchBar } from "./SearchBar/SearchBar";
